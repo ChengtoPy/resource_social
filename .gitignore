@@ -1,0 +1,4 @@
+*.pyc
+resourse_social/.idea
+resourse_social/.idea/
+**/migrations/
