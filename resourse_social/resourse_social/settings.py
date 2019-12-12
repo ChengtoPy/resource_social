@@ -81,7 +81,11 @@ DATABASES = {
         'PORT': 3306,  # 数据库端口
         'USER': 'root',  # 数据库用户名
         'PASSWORD': 'python',  # 数据库用户密码
-        'NAME': 'resourse_social'  # 数据库名字
+        'NAME': 'resourse_social',  # 数据库名字
+        'OPTIONS': {
+            # 'read_default_file': '/path/to/my.cnf',    # 配置mysql、、、cnf
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",   # 添加错误处理，出现非法值转义添加
+        },
     },
 }
 
@@ -143,3 +147,4 @@ CACHES = {
 }
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "session"
+SESSION_COOKIE_AGE=60*30
