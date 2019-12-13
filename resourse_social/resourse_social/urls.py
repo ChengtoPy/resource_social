@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('apps.Srik.urls'),name='Srik'),  # 引入主页的url配置
