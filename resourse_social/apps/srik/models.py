@@ -90,7 +90,6 @@ class Img(models.Model):
         verbose_name_plural = verbose_name
 
 class Answer(models.Model):
-
     question_name = models.CharField(verbose_name='提问者用户名', max_length=100)
     question_content = models.TextField(verbose_name='提问内容', default='？？')
     question_time = models.DateTimeField(verbose_name='提问时间', default=timezone.now)

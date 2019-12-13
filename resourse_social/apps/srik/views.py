@@ -21,6 +21,6 @@ class IndexView(View):
             # 如果页面超出范围，提交最后一个页面
             contacts = paginator.page(paginator.num_pages)
 
-        return render(request, './blackmain/index.html', {'contacts': contacts, 'paginator': paginator})
+        return render(request, 'blackmain/index.html', {'contacts': contacts, 'paginator': paginator})
 
 # Create your views here.
