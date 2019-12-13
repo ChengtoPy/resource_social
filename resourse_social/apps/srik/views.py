@@ -9,18 +9,18 @@ class IndexView(View):
     def get(self,request):
         # info = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
         contact_list = Posts.objects.all().order_by("-create_time")
-        paginator = Paginator(contact_list, 7)  # Show 25 contacts per page
+        paginator = Paginator(contact_list, 7)  # 每页显示25个数据
 
         page = request.GET.get('page', '1')
         try:
             contacts = paginator.page(page)
         except PageNotAnInteger:
-            # If page is not an integer, deliver first page.
+            # 如果页面不是整数，则提交第一个页面
             contacts = paginator.page(1)
         except EmptyPage:
-            # If page is out of range (e.g. 9999), deliver last page of results.
+            # 如果页面超出范围，提交最后一个页面
             contacts = paginator.page(paginator.num_pages)
 
-        return render(request, 'blackmain/index.html', {'contacts': contacts, 'paginator': paginator})
+        return render(request, './blackmain/index.html', {'contacts': contacts, 'paginator': paginator})
 
 # Create your views here.
