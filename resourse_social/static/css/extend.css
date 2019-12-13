@@ -36,10 +36,10 @@
 .fl{float:left;color:white}
 .fr{float:right}
 /* 搜索框logo*/
-.search_bar{width:100%px;height:90px;margin:0 auto;}
+.search_bar{width:1014px;height:90px;margin:0 auto;}
 .loll{width:150px;height:90px;margin:29px 0 0 17px;}
 
-.search_con{width:616px;height:38px;border:1px solid #4277ad;margin:34px 0 0 124px;background:url(/static/images/bcoin.jpg)) 10px -338px no-repeat;}
+.search_con{width:616px;height:38px;border:1px solid #4277ad;margin:34px 0 0 124px;background:url(/static/images/bcoin.jpg) 10px -338px no-repeat;}
 .search_con .input_text{width:470px;height:34px;border:0px;margin:2px 0 0 36px;outline:none;font-size:12px;color:#2894FF;font-family:'Microsoft Yahei'}
 
 .search_con .input_btn{

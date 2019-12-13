@@ -13,8 +13,9 @@
     margin-top: 10px;
 }
 .headNav{
-    float: left;
-    margin-left: 300px;
+    margin: 0 auto;
+    width: 770px;
+    height: 50px;
 }
 .headNav li{
     float: left;

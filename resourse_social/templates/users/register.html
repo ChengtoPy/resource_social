@@ -23,7 +23,7 @@
 					<span class="sp">|</span>
 					<a href="user_center_info.html">用户中心</a>
 					<span class="sp">|</span>
-					<a href="user_center_order.html">忘记密码</a>
+					<a href="{% url 'user:forget' %}">忘记密码</a>
 				</div>
 			</div>
 		</div>		
@@ -38,7 +38,7 @@
 		<div class="r_con fr">
 			<div class="reg_title clearfix">
 				<h1>用户注册</h1>
-				<a href="login">登录</a>
+				<a href="{% url 'user:login' %}">登录</a>
 			</div>
 			<div class="reg_form clearfix">
 				<form  action="{% url 'user:register' %}" onsubmit="return check()"  method="post">

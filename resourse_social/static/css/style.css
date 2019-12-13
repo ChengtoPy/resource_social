@@ -66,8 +66,8 @@ body, input, button, textarea, select {
 }
 /*导航样式开始*/
 .header {
-	position: fixed;
-	top: 0;
+	position: absolute;
+	top: 15px;
 	bottom: 0;
 	width: 190px;
 	background-color: #f6f6f6;

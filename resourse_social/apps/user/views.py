@@ -8,10 +8,12 @@ from apps.user.models import Users
 
 
 class LoginView(View):
-    def get(self,request):
-        return render(request,'users/login.html')
+    """用户登录请求"""
 
-    def post(self,request):
+    def get(self, request):
+        return render(request, 'users/login.html')
+
+    def post(self, request):
         username = request.POST.get('username')
         password = request.POST.get('pwd')
 
@@ -26,11 +28,14 @@ class LoginView(View):
                 continue
         return JsonResponse({'res': 1, 'errmsg': '登录失败'})
 
+
 class RegisterView(View):
-    def get(self,request):
+    """用户注册请求"""
+
+    def get(self, request):
         return render(request, 'users/register.html', {'errmsg': ''})
 
-    def post(self,request):
+    def post(self, request):
         print("post请求注册")
         username = request.POST.get('user_name')
         password = request.POST.get('pwd')
@@ -55,5 +60,22 @@ class RegisterView(View):
         except Exception as e:
             print("e: ", e)  # 把异常打印出来
             return render(request, 'users/register.html', {'errmsg': '用户名已存在！'})
+        return render(request, 'users/login.html')
+
+
+class PassWordView(View):
+    """修改密码"""
+
+    def get(self, request):
+        return render(request, 'users/user_center_order.html')
+
+
+class LogoutView(View):
+    """退出登录"""
+    def get(self, request):
+        request.session['islogin'] = False
+        del request.session['username']
+        del request.session['user_id']
+        # 跳转到首页
         return render(request, 'users/login.html')
 # Create your views here.
