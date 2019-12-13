@@ -1,5 +1,6 @@
 import re
 
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 
@@ -10,6 +11,20 @@ class LoginView(View):
     def get(self,request):
         return render(request,'users/login.html')
 
+    def post(self,request):
+        username = request.POST.get('username')
+        password = request.POST.get('pwd')
+
+        userlist = Users.objects.all()
+        for var in userlist:
+            if var.username == username and var.password == password:
+                request.session['islogin'] = True
+                request.session['username'] = username
+                request.session['user_id'] = var.userid
+                return JsonResponse({'res': 0, 'jump_url': "{% url 'srik:index' %}"})
+            else:
+                continue
+        return JsonResponse({'res': 1, 'errmsg': '登录失败'})
 
 class RegisterView(View):
     def get(self,request):
