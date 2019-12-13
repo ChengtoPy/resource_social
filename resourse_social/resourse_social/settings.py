@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,7 +53,7 @@ ROOT_URLCONF = 'resourse_social.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',  # jinja2模板引擎
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR+'/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,8 +82,8 @@ DATABASES = {
         'PASSWORD': 'python',  # 数据库用户密码
         'NAME': 'resourse_social',  # 数据库名字
         'OPTIONS': {
-            # 'read_default_file': '/path/to/my.cnf',    # 配置mysql、、、cnf
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",   # 添加错误处理，出现非法值转义添加
+            # 'read_default_file': '/path/to/my.cnf',    # 配置mysql、、、cnf,,,,sql模式
+            # 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",   # 添加错误处理，出现非法值转义添加
         },
     },
 }
