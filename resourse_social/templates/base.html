@@ -24,7 +24,7 @@
 <meta name="Keywords" content="" />
 <meta name="description" content="" />
 <script type="text/javascript">
-//判断浏览器是否支持HTML5
+{#//判断浏览器是否支持HTML5#}
 window.onload = function() {
 	if (!window.applicationCache) {
 		window.location.href="ie.html";
@@ -48,9 +48,9 @@ window.onload = function() {
                 </div>
                 {% else %}
 				<div class="login_btn fl">
-					<a href="http://127.0.0.1:8080/user/login">登录</a>
+					<a href="{% url 'user:login' %}">登录</a>
 					<span class="sp">|</span>
-					<a href="http://127.0.0.1:8080/user/register">注册</a>
+					<a href="{% url 'user:register' %}">注册</a>
 				</div>
                 {% endif %}
 				<div class="user_link fl">

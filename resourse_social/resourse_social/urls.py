@@ -17,5 +17,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('apps.srik.urls'),name='srik'),  # 引入主页的url配置
+    url(r'^', include('apps.srik.urls')),  # 引入主页的url配置
+    url(r'^', include('apps.user.urls')),  # 用户
 ]

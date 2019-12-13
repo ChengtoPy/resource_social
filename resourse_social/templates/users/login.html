@@ -14,9 +14,9 @@
 			<div class="welcome fl">欢迎来到Black学习社!</div>
 			<div class="fr">
 				<div class="login_btn fl">
-					<a href="login.html">登录</a>
+					<a href="{% url 'user:login' %}">登录</a>
 					<span class="sp">|</span>
-					<a href="register.html">注册</a>
+					<a href="{% url 'user:register' %}">注册</a>
 				</div>
 				<div class="user_link fl">
 					<span class="sp">|</span>
@@ -27,7 +27,7 @@
     </div>
 	<div class="login_top clearfix">
 
-		<a href="index.html" class="login_logo"><img src="/static/images/logo.jpg" style="width: 160px; height: 120px;margin-top:0;"></a>
+		<a href="{% url 'srik:index'  %}" class="login_logo"><img src="/static/images/logo.jpg" style="width: 160px; height: 120px;margin-top:0;"></a>
 
 	</div>
 

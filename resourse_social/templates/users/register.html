@@ -15,9 +15,9 @@
 			<div class="welcome fl">欢迎来到Black学习社!</div>
 			<div class="fr">
 				<div class="login_btn fl">
-					<a href="login.html">登录</a>
+					<a href="{% url 'user:login' %}">登录</a>
 					<span class="sp">|</span>
-					<a href="register.html">注册</a>
+					<a href="{% url 'user:register' %}">注册</a>
 				</div>
 				<div class="user_link fl">
 					<span class="sp">|</span>
@@ -41,7 +41,7 @@
 				<a href="login">登录</a>
 			</div>
 			<div class="reg_form clearfix">
-				<form  action="http://127.0.0.1:8080/user/register" onsubmit="return check()"  method="post">
+				<form  action="{% url 'user:register' %}" onsubmit="return check()"  method="post">
 					{% csrf_token %}
 					<ul>
 						<li>
