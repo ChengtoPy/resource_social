@@ -85,7 +85,7 @@
           <div class="comment-form">
             <textarea placeholder="个人说明" id='des' name="des"></textarea>
             <div class="comment-form-footer">
-              <div class="comment-form-text">清理会话 <a href="user/logout">登出</a> </div>
+              <div class="comment-form-text">清理会话 <a href="{% url 'user:logout' %}">登出</a> </div>
               <div class="comment-form-btn">
                 <button type="submit" id="usermodify" class="btn btn-default btn-comment">保存更改</button>
               </div>
@@ -121,10 +121,10 @@
                 'img': '1',
                 'csrfmiddlewaretoken': '{{ csrf_token  }}'
                 };
-                $.post("http://127.0.0.1:8080/user/usermodify",params,function(result){
+                $.post("{% url 'user:modify' %}",params,function(result){
                     if (result.res==0){
                         alert('修改成功');
-                        window.location.href ="http:127.0.0.1:8080/user/ucenter";
+                        window.location.href ="{% url 'user:center' %}";
 
                     }
                     else{

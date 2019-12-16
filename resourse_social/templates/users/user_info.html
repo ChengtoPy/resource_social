@@ -117,7 +117,7 @@
                         'img': '1',
                         'csrfmiddlewaretoken': '{{ csrf_token  }}'
                     };
-                    $.post("http://127.0.0.1:8080/user/usermodify", params, function (result) {
+                    $.post("{% url 'user:modify' %}", params, function (result) {
                         if (result.res == 0) {
                             alert('修改成功');
                             window.location.href = "{% url 'user:center' %}";
