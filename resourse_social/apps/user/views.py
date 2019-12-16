@@ -1,9 +1,11 @@
 import re
 
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 
+from apps.srik.models import Posts, Information
 from apps.user.models import Users
 
 
@@ -78,4 +80,31 @@ class LogoutView(View):
         del request.session['user_id']
         # 跳转到首页
         return render(request, 'users/login.html')
+
+
+class UserCenter(View):
+    def get(self,request):
+        user_info = Users.objects.get(username=request.session['username'])
+        source = Posts.objects.filter(share_name=request.session['username'])
+        info = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
+        paginator = Paginator(source, 5)  # 每页显示25个联系人
+
+        page = request.GET.get('page', '1')
+        try:
+            contacts = paginator.page(page)
+        except PageNotAnInteger:
+            # 如果页面不是整数，则提交第一个页面。
+            contacts = paginator.page(1)
+        except EmptyPage:
+            # 如果页面超出范围(例如9999)，则提交最后一页的结果。
+            contacts = paginator.page(paginator.num_pages)
+
+        context = {
+            'zynum': len(source),
+            'info_num': len(info),
+            'contacts': contacts,
+            'paginator': paginator,
+            'user_info': user_info,
+        }
+        return render(request, 'users/user_center_info.html', context)
 # Create your views here.
