@@ -83,6 +83,7 @@ class LogoutView(View):
 
 
 class UserCenter(View):
+    """用户中心"""
     def get(self,request):
         user_info = Users.objects.get(username=request.session['username'])
         source = Posts.objects.filter(share_name=request.session['username'])
@@ -107,4 +108,29 @@ class UserCenter(View):
             'user_info': user_info,
         }
         return render(request, 'users/user_center_info.html', context)
+
+
+class PayvipView(View):
+    """vip支付"""
+    def get(self,request):
+       return render(request, 'users/payvip.html')
+
+
+class UserInfoView(View):
+    """用户消息"""
+    def get(self,request):
+        if request.method=="GET":
+            user_info = Users.objects.get(username=request.session['username'])
+            source = Posts.objects.filter(share_name=request.session['username'])
+            info = Information.objects.filter(receive_name=request.session['username']).order_by('-send_time')
+            info_n = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
+            context = {
+                'zynum': len(source),
+                'info':info,
+                'info_num':len(info_n),
+                'user_info': user_info,
+            }
+            return render(request, 'users/user_info.html', context)
+        else:
+            return JsonResponse({'res': 1, 'errmsg': '无效请求'})
 # Create your views here.

@@ -19,9 +19,9 @@
       </div>
       <div class="content-block new-content">
         <h2 class="title" style="font-size: 15px;margin: 0;padding: 0;">
-        	<strong><a href="http://127.0.0.1:8080/user/ucenter">发表资源({{zynum}})</a></strong>
+        	<strong><a href="{% url 'user:center' %}">发表资源({{zynum}})</a></strong>
         	&nbsp;&nbsp;<strong><a href="#">&nbsp;&nbsp;B币数({{user_info.user_allmarks}})</a></strong>
-        	&nbsp;&nbsp;<strong><a href="http://127.0.0.1:8080/user/info">&nbsp;&nbsp;消息({{info_num}})</a></strong>
+        	&nbsp;&nbsp;<strong><a href="{% url 'user:info' %}">&nbsp;&nbsp;消息({{info_num}})</a></strong>
         	&nbsp;&nbsp;<strong><a href="#">&nbsp;&nbsp;学习群(0)</a></strong>
         </h2>
         <div class="row">
