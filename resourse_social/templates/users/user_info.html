@@ -117,7 +117,11 @@
                         'img': '1',
                         'csrfmiddlewaretoken': '{{ csrf_token  }}'
                     };
+<<<<<<< HEAD
                     $.post("{% url 'user:modify' %}", params, function (result) {
+=======
+                    $.post("http://127.0.0.1:8080/user/usermodify", params, function (result) {
+>>>>>>> fe7fe06... 'feat:用户消息信息展示'
                         if (result.res == 0) {
                             alert('修改成功');
                             window.location.href = "{% url 'user:center' %}";

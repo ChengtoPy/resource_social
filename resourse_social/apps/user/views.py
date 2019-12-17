@@ -85,8 +85,12 @@ class LogoutView(View):
 
 class UserCenter(View):
     """用户中心"""
+<<<<<<< HEAD
 
     def get(self, request):
+=======
+    def get(self,request):
+>>>>>>> fe7fe06... 'feat:用户消息信息展示'
         user_info = Users.objects.get(username=request.session['username'])
         source = Posts.objects.filter(share_name=request.session['username'])
         info = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
@@ -114,13 +118,19 @@ class UserCenter(View):
 
 class PayvipView(View):
     """vip支付"""
+<<<<<<< HEAD
 
     def get(self, request):
         return render(request, 'users/payvip.html')
+=======
+    def get(self,request):
+       return render(request, 'users/payvip.html')
+>>>>>>> fe7fe06... 'feat:用户消息信息展示'
 
 
 class UserInfoView(View):
     """用户消息"""
+<<<<<<< HEAD
 
     def get(self, request):
         user_info = Users.objects.get(username=request.session['username'])
@@ -152,4 +162,21 @@ class InfoModify(View):
 
     # else:
     #     return JsonResponse({'res': 1, 'errmsg': '无效请求'})
+=======
+    def get(self,request):
+        if request.method=="GET":
+            user_info = Users.objects.get(username=request.session['username'])
+            source = Posts.objects.filter(share_name=request.session['username'])
+            info = Information.objects.filter(receive_name=request.session['username']).order_by('-send_time')
+            info_n = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
+            context = {
+                'zynum': len(source),
+                'info':info,
+                'info_num':len(info_n),
+                'user_info': user_info,
+            }
+            return render(request, 'users/user_info.html', context)
+        else:
+            return JsonResponse({'res': 1, 'errmsg': '无效请求'})
+>>>>>>> fe7fe06... 'feat:用户消息信息展示'
 # Create your views here.
