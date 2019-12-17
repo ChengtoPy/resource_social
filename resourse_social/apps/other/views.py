@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
@@ -18,7 +19,7 @@ class SourceView(View):
             'title': source[0].title,
             'content': source[0].content,
             'source_bgurl': source[0].source_bgurl,
-            'source_psw': source[0].source_p3sw,
+            'source_psw': source[0].source_psw,
             'source_valuemarks': source[0].source_valuemarks,
             'click_nums': source[0].click_nums,
             'load_nums': source[0].load_nums,
@@ -78,6 +79,30 @@ class Buy(View):
             source[0].source_psw)
         send(send_name, content, request.session['username'])
         return JsonResponse({'res': 0, 'bgurl': source[0].source_bgurl, 'psw': source[0].source_psw})
+            # return JsonResponse({'res': "无此页面"})
+
+
+class SeacherView(View):
+    def get(self,request):
+        skey=request.GET.get('seacherkey')
+        if not skey:
+            error_msg = '请输入关键词'
+            return render(request, 'other/seacher.html', {'error_msg': error_msg})
+        else:
+            contact_list = Posts.objects.filter(title__icontains=skey).order_by("-create_time")
+            paginator = Paginator(contact_list, 7)  # Show 25 contacts per page
+
+            page = request.GET.get('page', '1')
+            try:
+                contacts = paginator.page(page)
+            except PageNotAnInteger:
+                # If page is not an integer, deliver first page.
+                contacts = paginator.page(1)
+            except EmptyPage:
+                # If page is out of range (e.g. 9999), deliver last page of results.
+                contacts = paginator.page(paginator.num_pages)
+
+            return render(request, 'other/seacher.html', {'contacts': contacts, 'paginator': paginator,'num':len(contact_list),'key':skey})
             # return JsonResponse({'res': "无此页面"})
 
 # Create your views here.

@@ -159,6 +159,7 @@ class VipView(View):
 
 
 class CommentView(View):
+    """资源评论"""
     def post(self, request):
         comment_sourcename = request.POST.get('comment_sourcename')
         source_id = request.POST.get('source_id')
