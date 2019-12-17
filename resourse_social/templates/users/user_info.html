@@ -94,48 +94,46 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
-            $("#usermodify").click(function () {
-                var des = $('#des').val();
-                var user_name = $('#username').val();
-                var session = '{{request.session.username}}';
-                if (session == '') {
-                    alert("你未登录，请先登录！");
+    $(document).ready(function(){
+          $("#usermodify").click(function(){
+            var des = $('#des').val();
+            var user_name = $('#username').val();
+            var session='{{request.session.username}}';
+            if (session==''){
+               alert("你未登录，请先登录！");
 
-                }
-                if (user_name == '') {
-                    alert("新用户名未填！");
+            }
+            if(user_name==''){
+               alert("新用户名未填！");
 
-                }
-                if (des == '') {
-                    alert("个人说明未填！");
+            }
+            if(des==''){
+               alert("个人说明未填！");
 
-                } else {
-                    var params = {
-                        'username': user_name,
-                        'des': des,
-                        'img': '1',
-                        'csrfmiddlewaretoken': '{{ csrf_token  }}'
-                    };
-<<<<<<< HEAD
-                    $.post("{% url 'user:modify' %}", params, function (result) {
-=======
-                    $.post("http://127.0.0.1:8080/user/usermodify", params, function (result) {
->>>>>>> fe7fe06... 'feat:用户消息信息展示'
-                        if (result.res == 0) {
-                            alert('修改成功');
-                            window.location.href = "{% url 'user:center' %}";
-                        } else {
-                            alert('修改失败');
+            }
+            else{
+                var params = {
+                'username': user_name,
+                'des': des,
+                'img': '1',
+                'csrfmiddlewaretoken': '{{ csrf_token  }}'
+                };
+                $.post("http://127.0.0.1:8080/user/usermodify",params,function(result){
+                    if (result.res==0){
+                        alert('修改成功');
+                        window.location.href ="{% url 'user:center' %}";
+                    }
+                    else{
+                        alert('修改失败');
 
-                        }
+                    }
 
-                    });
-                }
+                 });
+            }
 
-            });
-        });
-    </script>
+          });
+    });
+</script>
         </div>
 {% endblock mainbody %}
 <!--/内容-->
