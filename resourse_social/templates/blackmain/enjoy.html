@@ -7,7 +7,7 @@
     <div class="content" style="margin-left: 50px;">   
       <div class="content-block comment">
         <h2 class="title"><strong>分享资源</strong></h2>
-        <form action="posts" method="post" class="form-inline" onsubmit="return zycheck()" id="comment-form">
+        <form action="{% url 'srik:enjoy' %}" method="post" class="form-inline" onsubmit="return zycheck()" id="comment-form">
             {% csrf_token %}
            <div class="comment-title">
            	<div class="form-group">
