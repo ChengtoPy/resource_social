@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.srik',
     'apps.user',
+    'apps.other',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

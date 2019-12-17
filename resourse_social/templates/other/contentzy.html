@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}分享资源{% endblock title %}
 {% block fdnav %}{% endblock fdnav %}
 
@@ -10,7 +11,7 @@
         <h2 class="title"><strong>{{title}}</strong></h2>
 			    <div id="row2" style="width: 100%;height: 250px;display: flex;margin:0;padding: 0;">
 			        <div >
-			        	<a href="#" style="width: 100%;height: 100%;"><img src="/static/img/zydemo.jpg" style="width: 60%;height: 90%;border: 1px solid bisque;"></img></a>
+			        	<a href="#" style="width: 100%;height: 100%;"><img src="{% static '/static/img/zydemo.jpg' %}" style="width: 60%;height: 90%;border: 1px solid bisque;"></img></a>
 			        </div>
 			        <div style="margin:0;padding: 0;">
 						    <p id="p1" style="width: 100%;height: 12%;font-size: 14px;margin:0;padding: 0;"><strong>{{title}}</strong></p>
@@ -129,11 +130,11 @@
     <div class="sidebar-block recommend">
       <h2 class="title"><strong>最近更新</strong></h2>
       <ul>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有...</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有 ...</span> <span class="text-muted">阅读(2165)</span></a></li>
+        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
+        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
+        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
+        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有...</span> <span class="text-muted">阅读(2165)</span></a></li>
+        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有 ...</span> <span class="text-muted">阅读(2165)</span></a></li>
       </ul>
     </div>
     <div class="sidebar-block comment">
@@ -181,7 +182,7 @@
                         $.post('http://127.0.0.1:8080/comment', params, function (data) {
                             if (data.res == 0){
                                 alert("评论成功");
-                                window.location.href ="http://127.0.0.1:8080/other/source?n={{source_id}}&s=4566%{{source_id}}7%38%54";
+                                window.location.href ="{% url 'other:source' %}?n={{source_id}}&s=4566%{{source_id}}7%38%54";
                             }
                             else
                             {
