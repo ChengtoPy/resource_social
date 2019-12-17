@@ -55,4 +55,10 @@ class GoodClass(View):
         print(len(list1))
         return render(request, 'blackmain/goodclass.html', {'contacts': contacts, 'paginator': paginator,'list1':list1,'list2':list2,'list3':list3})
 
+
+class EnjoyView(View):
+    """分享资源"""
+    def get(self,request):
+        return render(request,'blackmain/enjoy.html')
+
 # Create your views here.
