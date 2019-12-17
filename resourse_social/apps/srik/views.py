@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
-from apps.srik.models import Information, Posts, Answer, Comment
+from apps.srik.models import Information, Posts, Answer, Comment, Img
 
 
 class IndexView(View):
@@ -73,9 +73,17 @@ class EnjoyView(View):
         psw = request.POST.get('source_psw')  # 网盘密码
         name = request.POST.get('share_name')  # 贡献者
         text = request.POST.get('sourcedsp')  # 资源说明
-        posts = Posts.objects.create(title=title, source_valuemarks=value,source_picurl=img,source_type=types,source_bgurl=source_url,source_psw=psw,share_name=name,content=text )
-        posts.save()
-        response = redirect(reverse('srik:enjoy'))      # 分享成功后的跳转
+        try:
+            posts = Posts.objects.create(title=title, source_valuemarks=value,source_picurl=img,source_type=types,source_bgurl=source_url,source_psw=psw,share_name=name,content=text )
+            posts.save()
+            new_img = Img(
+                img=request.FILES.get('sourceimg'),
+                wpurl=source_url
+            )
+            new_img.save()
+        except Exception as a:
+            print('a:{}'.format(a))  # 打印错误信息
+        response = redirect(reverse('user:center'))      # 分享成功后的跳转
         return response
 
 
@@ -123,7 +131,9 @@ class AnswerView(View):
         print (answer_list)
         return render(request,'blackmain/answer.html',{'answer':answer_list})
 
+
 class GetView(View):
+    """b币获取"""
     def get(self,request):
             zy_comment = Comment.objects.filter(source_id=111111)
             context = {
@@ -131,5 +141,10 @@ class GetView(View):
             }
             print(zy_comment)
             return render(request, 'blackmain/getcoin.html', context)
-            # return JsonResponse({'res': "无此页面"})
+# return JsonResponse({'res': "无此页面"})
+
+class VipView(View):
+    def get(self,request):
+        return render(request, 'blackmain/vip.html')
+
 # Create your views here.
