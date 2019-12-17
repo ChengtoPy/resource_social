@@ -11,7 +11,7 @@ class IndexView(View):
     def get(self, request):
         # info = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
         contact_list = Posts.objects.all().order_by("-create_time")  # 排序
-        paginator = Paginator(contact_list, 7)  # 每页显示25个数据
+        paginator = Paginator(contact_list, 5)  # 每页显示25个数据
         page = request.GET.get('page', '1')
         try:
             contacts = paginator.page(page)
@@ -77,4 +77,23 @@ class EnjoyView(View):
         posts.save()
         response = redirect(reverse('srik:enjoy'))      # 分享成功后的跳转
         return response
+
+
+class BwView(View):
+    def get(self,request):
+        contact_list = Posts.objects.filter(source_type="百度网盘教程").order_by("-create_time")
+        paginator = Paginator(contact_list, 5)  # Show 25 contacts per page
+
+        page = request.GET.get('page', '1')
+        try:
+            contacts = paginator.page(page)
+        except PageNotAnInteger:
+            # 如果页面不是整数，则提交第一个页面
+            contacts = paginator.page(1)
+        except EmptyPage:
+            # 如果页面超出范围，提交最后一个页面
+            contacts = paginator.page(paginator.num_pages)
+
+        return render(request, 'blackmain/bw.html', {'contacts': contacts, 'paginator': paginator})
+
 # Create your views here.
