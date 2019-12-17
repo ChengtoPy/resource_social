@@ -6,7 +6,7 @@
 
 {% block seacher %}
 <div class="search_bar clearfix">
-		<a href="http://127.0.0.1:8080" class="loll fl" style="width: 160px; height: 90px;margin: 0;"><img src="/static/images/logo.jpg" style="width: 160px; height: 90px;margin-left: 80px"></a>
+		<a href="{% url 'srik:index' %}" class="loll fl" style="width: 160px; height: 90px;margin: 0;"><img src="/static/images/logo.jpg" style="width: 160px; height: 90px;margin-left: 80px"></a>
 		<div method="post" action="http://127.0.0.1:8080/other/seacher" class="search_con fl">
             {% csrf_token %}
 			<input type="text" class="input_text fl" name="seacherword" value="{{key}}" placeholder="搜索资源">
