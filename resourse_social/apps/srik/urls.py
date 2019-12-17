@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import IndexView, GoodClass, EnjoyView, BwView, BcView
+from .views import IndexView, GoodClass, EnjoyView, BwView, BcView, AnswerView
 
 app_name='srik'
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^enjoy/$',EnjoyView.as_view(),name="enjoy"),
     url(r'^bw/$',BwView.as_view(),name='bw'),
     url(r'^bcym/$',BcView.as_view(),name='bc'),
+    url(r'^answer/$',AnswerView.as_view(),name='answer'),
 ]

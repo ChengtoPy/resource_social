@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
-from apps.srik.models import Information, Posts
+from apps.srik.models import Information, Posts, Answer
 
 
 class IndexView(View):
@@ -114,5 +114,13 @@ class BcView(View):
             # If page is out of range (e.g. 9999), deliver last page of results.
             contacts = paginator.page(paginator.num_pages)
         return render(request, 'blackmain/bcym.html', {'contacts': contacts, 'paginator': paginator})
+
+
+class AnswerView(View):
+    """有问必答"""
+    def get(self,request):
+        answer_list=Answer.objects.all().order_by("-question_time")
+        print (answer_list)
+        return render(request,'blackmain/answer.html',{'answer':answer_list})
 
 # Create your views here.
