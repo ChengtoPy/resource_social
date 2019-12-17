@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
-from apps.srik.models import Information, Posts, Answer
+from apps.srik.models import Information, Posts, Answer, Comment
 
 
 class IndexView(View):
@@ -123,4 +123,13 @@ class AnswerView(View):
         print (answer_list)
         return render(request,'blackmain/answer.html',{'answer':answer_list})
 
+class GetView(View):
+    def get(self,request):
+            zy_comment = Comment.objects.filter(source_id=111111)
+            context = {
+                'zy_comment': zy_comment,
+            }
+            print(zy_comment)
+            return render(request, 'blackmain/getcoin.html', context)
+            # return JsonResponse({'res': "无此页面"})
 # Create your views here.
