@@ -43,7 +43,7 @@ def send(send_name,content,receive_name):
         print("e: ", e)
 
 
-class Buy(View):
+class BuyView(View):
     """购买资源"""
     def post(self,request):
         user_name = request.POST.get('user_name')
