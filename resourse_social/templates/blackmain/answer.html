@@ -49,10 +49,10 @@
                             'twcontent': question,
                             'csrfmiddlewaretoken': '{{ csrf_token  }}',
                         }
-                        $.post('http://127.0.0.1:8080/question', params, function (data) {
+                        $.post('{% url 'srik:question' %}', params, function (data) {
                             if (data.res == 0){
                                 alert("提交成功");
-                                window.location.href ="http://127.0.0.1:8080/answer";
+                                window.location.href ="{% url 'srik:answer' %}";
                             }
                             else
                             {
