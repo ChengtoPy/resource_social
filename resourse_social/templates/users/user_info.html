@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}用户中心{% endblock title %}
 {% block fdnav %}{% endblock fdnav %}
-
+{% load static %}
 {% block mainbody %}
     <div class="content-wrap"><!--内容-->
     <div class="content" style="margin-left: 100px;">
@@ -9,7 +9,7 @@
             <h2 class="title"><strong>用户中心</strong></h2>
             <div id="row1" style="width: 100%;height: 120px;display:block;margin:0;padding: 0;">
                 <div class="rowdc1" style="width: 100%;height: 120px;">
-                    <a href="#" style="position:absolute;width:30%;height: 70%;"><img src="/static/images/logo.jpg" style="margin-left: 10px;"></img></a>
+                    <a href="#" style="position:absolute;width:30%;height: 70%;"><img src="{% static 'images/logo.jpg' %}" style="margin-left: 10px;"></img></a>
                     <p id="p1"
                        style="position:absolute;display:block;width:100%;margin-left:120px;margin-top:10px;color: blue;font-size: 20px;">{{ request.session.username }}</p>
                     <p id="p2"
@@ -118,7 +118,7 @@
                 'img': '1',
                 'csrfmiddlewaretoken': '{{ csrf_token  }}'
                 };
-                $.post("http://127.0.0.1:8080/user/usermodify",params,function(result){
+                $.post("{% staitc '' %}http://127.0.0.1:8080/user/usermodify",params,function(result){
                     if (result.res==0){
                         alert('修改成功');
                         window.location.href ="{% url 'user:center' %}";
@@ -156,15 +156,15 @@
     <div class="sidebar-block comment">
       <h2 class="title"><strong>最新评论</strong></h2>
       <ul>
-        <li data-toggle="tooltip" data-placement="top" title="站长的评论"><a target="_blank" href=""><span class="face"><img src="images/icon/icon.png" alt=""></span> <span class="text"><strong>小阳站长</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="站长的评论"><a target="_blank" href=""><span class="face"><img src="{% staitc 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>小阳站长</strong> (2019-4-1) 说：<br />
            欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="读者墙上的评论"><a target="_blank" href=""><span class="face"><img src="images/icon/icon.png" alt=""></span> <span class="text"><strong>jjl</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="读者墙上的评论"><a target="_blank" href=""><span class="face"><img src="{% staitc 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>jjl</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦...</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="jjl的评论"><a target="_blank" href=""><span class="face"><img src="images/icon/icon.png" alt=""></span> <span class="text"><strong>molin</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="jjl的评论"><a target="_blank" href=""><span class="face"><img src="{% staitc 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>molin</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="摩天轮和将军令...的评论"><a target="_blank" href=""><span class="face"><img src="images/icon/icon.png" alt=""></span> <span class="text"><strong>小哥</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="摩天轮和将军令...的评论"><a target="_blank" href=""><span class="face"><img src="{% staitc 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>小哥</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="小哥和JJ林·...的评论"><a target="_blank" href=""><span class="face"><img src="images/icon/icon.png" alt=""></span> <span class="text"><strong>哈哈</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="小哥和JJ林·...的评论"><a target="_blank" href=""><span class="face"><img src="{% staitc 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>哈哈</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
       </ul>
     </div>

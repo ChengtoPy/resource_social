@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}用户中心{% endblock title %}
 {% block fdnav %}{% endblock fdnav %}
-
+{% load static %}
 {% block mainbody %}
 
   <div class="content-wrap"><!--内容-->
@@ -10,7 +10,7 @@
         <h2 class="title"><strong>用户中心</strong></h2>
 			    <div id="row1" style="width: 100%;height: 120px;display:block;margin:0;padding: 0;">
 			        <div class="rowdc1" style="width: 100%;height: 120px;">
-			        	<a href="#" style="position:absolute;width:30%;height: 70%;"><img src="/static/images/logo.jpg" style="margin-left: 10px;"></img></a>
+			        	<a href="#" style="position:absolute;width:30%;height: 70%;"><img src="{% static 'images/logo.jpg' %}" style="margin-left: 10px;"></img></a>
 			        	<p id="p1" style="position:absolute;display:block;width:100%;margin-left:120px;margin-top:10px;color: blue;font-size: 20px;">{{ request.session.username }}</p>
 			        	<p id="p2" style="position:absolute;width:100%;margin-left:120px;margin-top:40px; blue;font-size:14px;">注册时间：{{user_info.register_time}}</p>
 			        	<p id="p2" style="position:absolute;width:100%;margin-left:120px;margin-top:60px;blue;font-size:14px;">个人说明：{{user_info.description}}</p>
@@ -30,7 +30,7 @@
               <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="/static/img/zydemo.jpg" alt=""> </a> </div>
               <div class="news-info col-xs-7 col-sm-7 col-md-8">
                 <dl>
-                  <dt> <a href="http:127.0.0.1:8080/other/source/?n={{contact.id}}&s=4566%{{contact.id}}7%38%54" target="_blank" > {{contact.title}}</a> </dt>
+                  <dt> <a href="{% url 'other:source' %}{% static '' %}?n={{contact.id}}&s=4566%{{contact.id}}7%38%54" target="_blank" > {{contact.title}}</a> </dt>
                   <dd><span class="name"><a href="" title="由 jjl 发布" rel="author">{{contact.share_name}}</a></span> <span class="identity"></span> <span class="time">{{contact.create_time}}</span></dd>
                   <dd class="text">{{contact.content}}</dd>
                 </dl>
@@ -158,15 +158,15 @@
     <div class="sidebar-block comment">
       <h2 class="title"><strong>最新评论</strong></h2>
       <ul>
-        <li data-toggle="tooltip" data-placement="top" title="站长的评论"><a target="_blank" href=""><span class="face"><img src="images/icon/icon.png" alt=""></span> <span class="text"><strong>小阳站长</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="站长的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>小阳站长</strong> (2019-4-1) 说：<br />
            欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="读者墙上的评论"><a target="_blank" href=""><span class="face"><img src="images/icon/icon.png" alt=""></span> <span class="text"><strong>jjl</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="读者墙上的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>jjl</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦...</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="jjl的评论"><a target="_blank" href=""><span class="face"><img src="images/icon/icon.png" alt=""></span> <span class="text"><strong>molin</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="jjl的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>molin</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="摩天轮和将军令...的评论"><a target="_blank" href=""><span class="face"><img src="images/icon/icon.png" alt=""></span> <span class="text"><strong>小哥</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="摩天轮和将军令...的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>小哥</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="小哥和JJ林·...的评论"><a target="_blank" href=""><span class="face"><img src="images/icon/icon.png" alt=""></span> <span class="text"><strong>哈哈</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="小哥和JJ林·...的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>哈哈</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
       </ul>
     </div>

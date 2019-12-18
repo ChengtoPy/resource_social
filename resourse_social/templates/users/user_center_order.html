@@ -14,9 +14,9 @@
 <link type="text/css" href="{% static 'css/extend.css' %}" rel="stylesheet">
 
 <!--[if lt IE 9]>
-    <script src="js/html5shiv.min.js" type="text/javascript"></script>
-    <script src="js/respond.min.js" type="text/javascript"></script>
-    <script src="js/selectivizr-min.js" type="text/javascript"></script>
+    <script src="{% static 'js/html5shiv.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/respond.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/selectivizr-min.js' %}" type="text/javascript"></script>
 <![endif]-->
 <link rel="apple-touch-icon-precomposed" href="{% static 'images/icon/icon.png' %}">
 <link rel="shortcut icon" href="{% static 'images/icon/favicon.ico' %}">
@@ -66,7 +66,7 @@ window.onload = function() {
 			<input type="button" class="input_btn fr" name="" value="搜索">
 		</div>
 		<div class="guest_cart fr">
-			<a href="getcoin.html" class="cart_name fl">获取B币</a>
+			<a href="{% url 'srik:get' %}" class="cart_name fl">获取B币</a>
 			<div class="book_count fl" id="show_count">B</div>
 		</div>
 </div>
@@ -74,12 +74,12 @@ window.onload = function() {
     <div class="ltHead_cen">
         <ul class="headNav" style="margin-left: 100px;">
             <li><a href="{% url 'srik:index' %}">首页</a></li>
-            <li><a href="goodclass.html">精品教程</a></li>
-            <li><a href="bw.html">百度网盘教程资源</a></li>
-            <li><a href="bcym.html">编程源码资源</a></li>
-            <li><a href="answer.html">有问必答</a></li>
-            <li><a href="getcoin.html">B币获取</a></li>
-            <li><a href="enjoy.html">分享资源</a></li>
+            <li><a href="{% url 'srik:goodclass' %}goodclass.html">精品教程</a></li>
+            <li><a href="{% url 'srik:bw' %}">百度网盘教程资源</a></li>
+            <li><a href="{% url 'srik:bc' %}">编程源码资源</a></li>
+            <li><a href="{% url 'srik:answer' %}">有问必答</a></li>
+            <li><a href="{% url 'srik:get' %}">B币获取</a></li>
+            <li><a href="{% url 'srik:enjoy' %}">分享资源</a></li>
         </ul>
     </div>
 </header>
@@ -94,12 +94,12 @@ window.onload = function() {
       <div id="header-xs-menu" class="navbar-collapse collapse">
         <ul class="nav navbar-nav header-xs-nav">
           <li class="active"><a href="{% url 'srik:index' %}"><span class="glyphicon glyphicon-home"></span>网站首页</a></li>
-          <li><a href="goodclass.html"><span class="glyphicon glyphicon-erase"></span>精品教程</a></li>
-          <li><a href="bw.html"><span class="glyphicon glyphicon-inbox"></span>百度网盘教程资源</a></li>
-          <li><a href="bcym.html"><span class="glyphicon glyphicon-globe"></span>源码资源</a></li>
-          <li><a href="answer.html"><span class="glyphicon glyphicon-user"></span>有问必答</a></li>
-          <li><a href="getcoin.html"><span class="glyphicon glyphicon-tags"></span>B币获取</a></li>
-          <li><a href="enjoy.html"><span class="glyphicon glyphicon-tags"></span>分享资源</a></li>
+          <li><a href="{% url 'srik:goodclass' %}"><span class="glyphicon glyphicon-erase"></span>精品教程</a></li>
+          <li><a href="{% url 'srik:bw' %}"><span class="glyphicon glyphicon-inbox"></span>百度网盘教程资源</a></li>
+          <li><a href="{% url 'srik:bc' %}"><span class="glyphicon glyphicon-globe"></span>源码资源</a></li>
+          <li><a href="{% url 'srik:answer' %}"><span class="glyphicon glyphicon-user"></span>有问必答</a></li>
+          <li><a href="{% url 'srik:get' %}"><span class="glyphicon glyphicon-tags"></span>B币获取</a></li>
+          <li><a href="{% url 'srik:enjoy' %}"><span class="glyphicon glyphicon-tags"></span>分享资源</a></li>
         </ul>
       </div>
     </div>

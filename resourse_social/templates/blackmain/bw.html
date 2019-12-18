@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}百度网盘资源{% endblock title %}
 {% block fdnav %}{% endblock fdnav %}
 
@@ -9,17 +10,17 @@
         <h2 class="title"><strong>百度网盘资源</strong></h2>
 			    <div id="row1" style="width: 100%;height: 150px;display: flex;">
 			        <div >
-			        	<a href="bw.html"><img src="/static/images/sqzy.png"></img></a>
+			        	<a href="{% url 'srik:bw' %}"><img src="/static/images/sqzy.png"></img></a>
 						    <p id="p1"><strong>编程资源</strong></p>
 						    <p id="p2">贴数：10000</p>
 			        </div>
 			        <div >
-			        	<a href="seacher.html"><img src="/static/img/jy.png"></img></a>
+			        	<a href="{% url 'other:seacher' %}"><img src="/static/img/jy.png"></img></a>
 						    <p id="p1"><strong>其他资源</strong></p>
 						    <p id="p2">贴数：1000</p>
 			        </div>
 			        <div >
-			        	<a href="enjoy.html"><img src="/static/img/enjoy.jpg"></img></a>
+			        	<a href="{% url 'srik:enjoy' %}"><img src="/static/img/enjoy.jpg"></img></a>
 						    <p id="p1"><strong>发帖共享你的资源</strong></p>
 						    <p id="p2">贴数：300</p>
 			        </div>
@@ -30,10 +31,10 @@
         <div class="row">
           {% for contact in contacts %}
           <div class="news-list">
-            <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="/static/images/logo.jpg" alt=""> </a> </div>
+            <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="{% static 'images/logo.jpg' %}" alt=""> </a> </div>
             <div class="news-info col-xs-7 col-sm-7 col-md-8">
               <dl>
-                <dt> <a href="http:127.0.0.1:8080/other/source/?n={{contact.id}}&s=4566%{{contact.id}}7%38%54" target="_blank" > {{contact.title}} </a> </dt>
+                <dt> <a href="{% url 'other:source' %}?n={{contact.id}}&s=4566%{{contact.id}}7%38%54" target="_blank" > {{contact.title}} </a> </dt>
                 <dd><span class="name"><a href="#" title="由 jjl 发布" rel="author">{{contact.share_name}}</a></span> <span class="identity"></span> <span class="time"> {{contact.tcreate_time}} </span></dd>
                 <dd class="text">{{contact.content}}</dd>
               </dl>

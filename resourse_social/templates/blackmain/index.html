@@ -8,9 +8,9 @@
         <li class="active"><a href="index.html"><span class="glyphicon glyphicon-home"></span>网站首页</a></li>
         <li><a href="{% url 'srik:goodclass' %}"><span class="glyphicon glyphicon-erase"></span>精品教程</a></li>
         <li><a href="{% url 'srik:bw' %}"><span class="glyphicon glyphicon-inbox"></span>百度网盘教程资源</a></li>
-        <li><a href="bcym.html"><span class="glyphicon glyphicon-globe"></span>编程源码资源</a></li>
-        <li><a href="answer.html"><span class="glyphicon glyphicon-user"></span>有问必答</a></li>
-        <li><a href="getcoin.html"><span class="glyphicon glyphicon-tags"></span>B币获取</a></li>
+        <li><a href="{% url 'srik:bc' %}"><span class="glyphicon glyphicon-globe"></span>编程源码资源</a></li>
+        <li><a href="{% url 'srik:answer' %}"><span class="glyphicon glyphicon-user"></span>有问必答</a></li>
+        <li><a href="{% url 'srik:get' %}"><span class="glyphicon glyphicon-tags"></span>B币获取</a></li>
         <li><a href="{% url 'srik:enjoy' %}"><span class="glyphicon glyphicon-globe"></span>分享资源</a></li>
       </ul>
       <div class="feeds"> <a class="feed feed-xlweibo" href="" target="_blank"><i></i>新浪微博</a> <a class="feed feed-txweibo" href="" target="_blank"><i></i>腾讯微博</a> <a class="feed feed-rss" href="" target="_blank"><i></i>订阅本站</a> <a class="feed feed-weixin" data-toggle="popover" data-trigger="hover" title="微信扫一扫" data-html="true" data-content="<img src='/static/images/weixin.jpg' alt=''>" href="javascript:;" target="_blank"><i></i>关注微信</a> </div>
