@@ -30,7 +30,7 @@
                    alert("你未登录，请先登录！");
                 }
                 else{
-                   window.location.href ="http://127.0.0.1:8080/user/pay";
+                   window.location.href ="{% url 'user:pay' %}";
                 }
 			});
 

@@ -113,7 +113,6 @@ class UserCenter(View):
 
 class PayvipView(View):
     """vip支付"""
-
     def get(self, request):
         return render(request, 'users/payvip.html')
 

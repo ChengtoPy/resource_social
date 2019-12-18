@@ -91,7 +91,6 @@ class SeacherView(View):
         else:
             contact_list = Posts.objects.filter(title__icontains=skey).order_by("-create_time")
             paginator = Paginator(contact_list, 7)  # Show 25 contacts per page
-
             page = request.GET.get('page', '1')
             try:
                 contacts = paginator.page(page)
