@@ -93,7 +93,7 @@ class BwView(View):
     """百度网盘教程资源"""
 
     def get(self, request):
-        contact_list = Posts.objects.filter(source_type="百度网盘教程").order_by("-create_time")
+        contact_list = Posts.objects.filter(source_type="百度网盘资源").order_by("-create_time")
         paginator = Paginator(contact_list, 5)  # Show 25 contacts per page
 
         page = request.GET.get('page', '1')
@@ -113,7 +113,7 @@ class BcView(View):
     """编程源码资源"""
 
     def get(self, request):
-        contact_list = Posts.objects.filter(source_type="开源源码").order_by("-create_time")
+        contact_list = Posts.objects.filter(source_type="编程源码资源").order_by("-create_time")
         paginator = Paginator(contact_list, 7)  # 每页显示的数据量
 
         page = request.GET.get('page', '1')
@@ -184,6 +184,7 @@ class CommentView(View):
 
 
 class QuestionView(View):
+    """用户提问"""
     def post(self,request):
         tw_name=request.POST.get("twname")
         twcontent=request.POST.get('twcontent')

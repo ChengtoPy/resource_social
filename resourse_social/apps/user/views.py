@@ -100,7 +100,7 @@ class UserCenter(View):
         user_info = Users.objects.get(username=request.session['username'])
         source = Posts.objects.filter(share_name=request.session['username'])
         info = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
-        paginator = Paginator(source, 5)  # 每页显示25个联系人
+        paginator = Paginator(source, 5)  # 每页显示25条数据
 
         page = request.GET.get('page', '1')
         try:

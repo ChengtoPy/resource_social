@@ -1,26 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}搜索-{{key}}{% endblock title %}
 {% block fdnav %}{% endblock fdnav %}
-{% load static %}
 
 
-{% block seacher %}
-<div class="search_bar clearfix">
-		<a href="{% url 'srik:index' %}" class="loll fl" style="width: 160px; height: 90px;margin: 0;"><img src="/static/images/logo.jpg" style="width: 160px; height: 90px;margin-left: 80px"></a>
-		<div method="post" action="{% url 'other:seacher' %}" class="search_con fl">
-            {% csrf_token %}
-			<input type="text" class="input_text fl" name="seacherword" value="{{key}}" placeholder="搜索资源">
-			<input type="submit" class="input_btn fr seacher" value="搜索">
-		</div>
-		<div class="guest_cart fr">
-			<a href="{% url 'srik:get' %}" class="cart_name fl">获取B币</a>
-			<div class="book_count fl" id="show_count">B</div>
-		</div>
-</div>
-{% endblock seacher %}
 {% block mainbody %}
   <div class="content-wrap"><!--内容-->
-    <div class="content" style="margin-left: 50px;">   
+    <div class="content" style="margin-left: 50px;">
       <div class="content-block new-content">
         <h2 class="title"><strong>搜索<span style="color:blue">{{key}}</span>结果如下:</strong><span> &nbsp;&nbsp;共{{num}}条</span></h2>
         <div class="row">
@@ -84,11 +70,11 @@
     <div class="sidebar-block recommend">
       <h2 class="title"><strong>最近更新</strong></h2>
       <ul>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有...</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有 ...</span> <span class="text-muted">阅读(2165)</span></a></li>
+        <li><a target="_blank" href=""> <span class="thumb"><img src="images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
+        <li><a target="_blank" href=""> <span class="thumb"><img src="images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
+        <li><a target="_blank" href=""> <span class="thumb"><img src="images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
+        <li><a target="_blank" href=""> <span class="thumb"><img src="images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有...</span> <span class="text-muted">阅读(2165)</span></a></li>
+        <li><a target="_blank" href=""> <span class="thumb"><img src="images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有 ...</span> <span class="text-muted">阅读(2165)</span></a></li>
       </ul>
     </div>
     <div class="sidebar-block comment">
