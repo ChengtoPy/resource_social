@@ -25,15 +25,14 @@
             <h2 class="title" style="font-size: 15px;margin: 0;padding: 0;">
                 <strong><a href="{% url 'user:center' %}">发表资源({{ zynum }})</a></strong>
                 &nbsp;&nbsp;<strong><a href="#">&nbsp;&nbsp;B币数({{ user_info.user_allmarks }})</a></strong>
-                &nbsp;&nbsp;<strong><a href="{% url 'user:info' %}"
-                                       style="color:red;">&nbsp;&nbsp;消息({{ info_num }})</a></strong>
+                &nbsp;&nbsp;<strong><a href="{% url 'user:info' %}">&nbsp;&nbsp;消息({{info_num}})</a></strong>
                 &nbsp;&nbsp;<strong><a href="#">&nbsp;&nbsp;学习群(0)</a></strong>
             </h2>
             <div class="row">
                 <div class="list-group">
                     {% for x in info %}
                         {% if x.read_sure %}
-                            <a href="inforead?num={{ x.id }}" class="list-group-item" style="height:70px;">
+                            <a href="{% url 'other:source' %}?n={{x.source_id}}&s=4566%{{x.source_id}}7%38%54" class="list-group-item" style="height:70px;">
                                 <h4 class="list-group-item-heading">
                                     {{ x.info_content }}
                                 </h4>
@@ -42,7 +41,7 @@
                                 </p>
                             </a>
                         {% else %}
-                            <a href="inforead?num={{ x.id }}" class="list-group-item" style="height:70px;">
+                            <a href="{% url 'other:source' %}?n={{x.source_id}}&s=4566%{{x.source_id}}7%38%54" class="list-group-item" style="height:70px;">
                                 <h4 class="list-group-item-heading">
                                     {{ x.info_content }}
                                 </h4>
@@ -118,10 +117,11 @@
                 'img': '1',
                 'csrfmiddlewaretoken': '{{ csrf_token  }}'
                 };
-                $.post("{% staitc '' %}http://127.0.0.1:8080/user/usermodify",params,function(result){
+                $.post("{% url 'user:modify' %}",params,function(result){
                     if (result.res==0){
                         alert('修改成功');
                         window.location.href ="{% url 'user:center' %}";
+
                     }
                     else{
                         alert('修改失败');
@@ -156,15 +156,15 @@
     <div class="sidebar-block comment">
       <h2 class="title"><strong>最新评论</strong></h2>
       <ul>
-        <li data-toggle="tooltip" data-placement="top" title="站长的评论"><a target="_blank" href=""><span class="face"><img src="{% staitc 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>小阳站长</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="站长的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>小阳站长</strong> (2019-4-1) 说：<br />
            欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="读者墙上的评论"><a target="_blank" href=""><span class="face"><img src="{% staitc 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>jjl</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="读者墙上的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>jjl</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦...</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="jjl的评论"><a target="_blank" href=""><span class="face"><img src="{% staitc 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>molin</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="jjl的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>molin</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="摩天轮和将军令...的评论"><a target="_blank" href=""><span class="face"><img src="{% staitc 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>小哥</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="摩天轮和将军令...的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>小哥</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="小哥和JJ林·...的评论"><a target="_blank" href=""><span class="face"><img src="{% staitc 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>哈哈</strong> (2019-4-1) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="小哥和JJ林·...的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>哈哈</strong> (2019-4-1) 说：<br />
           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
       </ul>
     </div>

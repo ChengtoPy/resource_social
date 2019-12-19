@@ -54,6 +54,7 @@ class Information(models.Model):
     info_content = models.TextField(verbose_name='消息内容', default='？？')
     send_time = models.DateTimeField(verbose_name='发送时间', default=timezone.now)
     read_sure=models.BooleanField(verbose_name='是否已经被阅读',default= False)
+    source_id = models.IntegerField(verbose_name='资源id',db_column='source_id',default=0)
 
     class Meta:
         db_table= 'Info_list'

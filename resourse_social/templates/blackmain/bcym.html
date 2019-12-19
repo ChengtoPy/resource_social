@@ -9,19 +9,19 @@
         <h2 class="title"><strong>编程源码资源</strong></h2>
 			    <div id="row1" style="width: 100%;height: 150px;display: flex;">
 			        <div >
-			        	<a href="bw.html"><img src="/static/images/sqzy.png"></img></a>
+			        	<a href="{% url 'srik:bw' %}"><img src="/static/images/sqzy.png"></img></a>
 						    <p id="p1"><strong>百度网盘源码资源</strong></p>
-						    <p id="p2">资源数：10000</p>
+						    <p id="p2">资源数：5</p>
 			        </div>
 			        <div >
-			        	<a href="seacher.html"><img src="/static/img/github.jpeg"></img></a>
+			        	<a href="{% url 'other:seacher' %}"><img src="/static/img/github.jpeg"></img></a>
 						    <p id="p1"><strong>github/中国开源源码</strong></p>
-						    <p id="p2">资源数：10000</p>
+						    <p id="p2">资源数：10</p>
 			        </div>
 			        <div >
-			        	<a href="enjoy.html"><img src="/static/img/enjoy.jpg"></img></a>
+			        	<a href="{% url 'srik:enjoy' %}"><img src="/static/img/enjoy.jpg"></img></a>
 						    <p id="p1"><strong>发帖共享你的资源</strong></p>
-						    <p id="p2">贴数：5000</p>
+						    <p id="p2">贴数：0</p>
 			        </div>
 			    </div>
       </div>
@@ -34,7 +34,7 @@
               <div class="news-info col-xs-7 col-sm-7 col-md-8">
                 <dl>
                   <dt> <a href="{% url 'other:source' %}?n={{contact.id}}&s=4566%{{contact.id}}7%38%54" target="_blank" > {{contact.title}} </a> </dt>
-                  <dd><span class="name"><a href="#" title="由 jjl 发布" rel="author">{{contact.share_name}}</a></span> <span class="identity"></span> <span class="time"> {{contact.tcreate_time}} </span></dd>
+                  <dd><span class="name"><a href="{% url 'other:source' %}?n={{contact.id}}&s=4566%{{contact.id}}7%38%54" title="{{contact.title}}" rel="author">{{contact.share_name}}</a></span> <span class="identity"></span> <span class="time"> {{contact.tcreate_time}} </span></dd>
                   <dd class="text">{{contact.content}}</dd>
                 </dl>
                 <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">{{contact.share_name}}</a> </span> <span class="look"> 共 <strong>2126</strong> 查看<strong> 12 </strong> 使用  </span> </div>

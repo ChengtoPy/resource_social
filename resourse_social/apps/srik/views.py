@@ -172,7 +172,7 @@ class CommentView(View):
                                comment_content=comment_content, comment_name=comment_name)
             passport.save()
 
-            info = Information(info_content=info_tx, receive_name=comment_sourcename, send_name=comment_name)
+            info = Information(info_content=info_tx, receive_name=comment_sourcename, send_name=comment_name, source_id=source_id)
             info.save()
 
         except Exception as e:

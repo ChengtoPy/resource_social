@@ -27,11 +27,11 @@
         <div class="row">
           {% for contact in contacts %}
             <div class="news-list">
-              <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="/static/img/zydemo.jpg" alt=""> </a> </div>
+              <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href="{% url 'other:source' %}?n={{contact.id}}&s=4566%{{contact.id}}7%38%54"><img src="/static/img/zydemo.jpg" alt=""> </a> </div>
               <div class="news-info col-xs-7 col-sm-7 col-md-8">
                 <dl>
-                  <dt> <a href="{% url 'other:source' %}{% static '' %}?n={{contact.id}}&s=4566%{{contact.id}}7%38%54" target="_blank" > {{contact.title}}</a> </dt>
-                  <dd><span class="name"><a href="" title="由 jjl 发布" rel="author">{{contact.share_name}}</a></span> <span class="identity"></span> <span class="time">{{contact.create_time}}</span></dd>
+                  <dt> <a href="{% url 'other:source' %}?n={{contact.id}}&s=4566%{{contact.id}}7%38%54" target="_blank" > {{contact.title}}</a> </dt>
+                  <dd><span class="name"><a href="{% url 'other:source' %}?n={{contact.id}}&s=4566%{{contact.id}}7%38%54" title="{{contact.title}}" rel="author">{{contact.share_name}}</a></span> <span class="identity"></span> <span class="time">{{contact.create_time}}</span></dd>
                   <dd class="text">{{contact.content}}</dd>
                 </dl>
                 <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a><a href="">{{contact.share_name}}</a></span><span class="look"> 共 <strong>{{contact.click_nums}}</strong> 查看 <strong> {{contact.load_nums}} </strong> 使用 </span> </div>
