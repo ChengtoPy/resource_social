@@ -1,5 +1,6 @@
 import re
 
+from django import http
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -43,6 +44,8 @@ class RegisterView(View):
         password = request.POST.get('pwd')
         cpassword = request.POST.get('cpwd')
         email = request.POST.get('email')
+        if not re.match(r'^[a-zA-Z0-9_\u4e00-\u9fa5]{5,20}$', username):
+            return render(request, 'users/register.html', {'errmsg': '用户名格式不对，需要5个字符及以上，禁止使用常用字符以外其他字符'})
         if not all([username, password, email]):
             # 有数据为空
             return render(request, 'users/register.html', {'errmsg': '参数不能为空!'})
@@ -52,17 +55,24 @@ class RegisterView(View):
         if password != cpassword:
             return render(request, 'users/register.html', {'errmsg': '两次密码不一致!'})
         try:
-            new_data = Users.objects.order_by('-id')[:1]
-            if len(new_data) >= 1:
-                newuid = new_data[0].userid + 1
-                passport = Users(username=username, password=password, email=email, userid=newuid)
-            else:
-                passport = Users(username=username, password=password, email=email)
-            passport.save()
+            Users.objects.get(username=username)  # 判断用户名是否存在
+            return render(request, 'users/register.html', {'errmsg': '用户名已存在！'})
         except Exception as e:
             print("e: ", e)  # 把异常打印出来
-            return render(request, 'users/register.html', {'errmsg': '用户名已存在！'})
-        return render(request, 'users/login.html')
+            try:
+                Users.objects.get(email=email)  # 判断邮箱是否存在
+                return render(request, 'users/register.html', {'errmsg': '邮箱已存在！'})
+            except Exception as i:
+                print("i: ", i)  # 把异常打印出来
+                new_data = Users.objects.order_by('-id')[:1]
+                if len(new_data) >= 1:
+                    newuid = new_data[0].userid + 1
+
+                    passport = Users(username=username, password=password, email=email, userid=newuid)
+                else:
+                    passport = Users(username=username, password=password, email=email)
+                passport.save()
+                return render(request, 'users/login.html')
 
 
 class PassWordView(View):
@@ -85,7 +95,8 @@ class LogoutView(View):
 
 class UserCenter(View):
     """用户中心"""
-    def get(self,request):
+
+    def get(self, request):
         user_info = Users.objects.get(username=request.session['username'])
         source = Posts.objects.filter(share_name=request.session['username'])
         info = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
@@ -113,8 +124,10 @@ class UserCenter(View):
 
 class PayvipView(View):
     """vip支付"""
+
     def get(self, request):
         return render(request, 'users/payvip.html')
+
 
 class UserInfoView(View):
     """用户消息"""
@@ -122,6 +135,7 @@ class UserInfoView(View):
     def get(self, request):
         user_info = Users.objects.get(username=request.session['username'])
         source = Posts.objects.filter(share_name=request.session['username'])
+
         info = Information.objects.filter(receive_name=request.session['username']).order_by('-send_time')
         info_n = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
         context = {
@@ -137,28 +151,33 @@ class UserInfoView(View):
 
 class InfoModify(View):
     """用户信息修改"""
+
     def post(self, request):
-        username = request.POST.get('username')
+        username_new = request.POST.get('username')
+        username = request.session['username']  # 获取当前用户名
         des = request.POST.get('des')
-        user_info = Users.objects.get(username=request.session['username'])
-        user_info.username = username
+        print(username_new)
+        user_info = Users.objects.get(username=username)
+        # 判断新用户名和旧用户名是否相同，新用户名是否为空,是否符合格式
+        if username_new != username and len(username_new) != 0 and re.match(r'^[a-zA-Z0-9_\u4e00-\u9fa5]{5,20}$', username_new):
+            user_info.username = username_new
+            request.session['username'] = username_new
         user_info.description = des
         user_info.save()
-        request.session['username'] = username
         return JsonResponse({'res': 0, 'errmsg': 'success'})
 
     # else:
     #     return JsonResponse({'res': 1, 'errmsg': '无效请求'})
-    def get(self,request):
-        if request.method=="GET":
+    def get(self, request):
+        if request.method == "GET":
             user_info = Users.objects.get(username=request.session['username'])
             source = Posts.objects.filter(share_name=request.session['username'])
             info = Information.objects.filter(receive_name=request.session['username']).order_by('-send_time')
             info_n = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
             context = {
                 'zynum': len(source),
-                'info':info,
-                'info_num':len(info_n),
+                'info': info,
+                'info_num': len(info_n),
                 'user_info': user_info,
             }
             return render(request, 'users/user_info.html', context)

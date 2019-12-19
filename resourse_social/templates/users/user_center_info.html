@@ -106,14 +106,13 @@
                alert("你未登录，请先登录！");
 
             }
-            if(user_name==''){
-               alert("新用户名未填！");
+            {#if(user_name==''){#}
+            {#   alert("新用户名未填！");#}
+            {##}
+            {#if(des==''){#}
+            {#   alert("个人说明未填！");#}
+            {##}
 
-            }
-            if(des==''){
-               alert("个人说明未填！");
-
-            }
             else{
                 var params = {
                 'username': user_name,
