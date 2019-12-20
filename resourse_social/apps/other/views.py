@@ -37,10 +37,10 @@ class SourceView(View):
         return render(request, 'other/contentzy.html', context)
 
 
-def send(send_name,content,receive_name):
+def send(send_name,content,receive_name,source_id):
     # 发送消息
     try:
-        buy = Information(send_name=send_name, receive_name=receive_name, info_content=content)
+        buy = Information(send_name=send_name, receive_name=receive_name, info_content=content,source_id=source_id)
         buy.save()
     except Exception as e:
         print("e: ", e)
@@ -80,12 +80,13 @@ class BuyView(View):
         send_name = "系统消息"
         content = "你已兑换资源" + str(source[0].title) + "网盘/开源网址" + str(source[0].source_bgurl) + " 网盘密码：" + str(
             source[0].source_psw)
-        send(send_name, content, request.session['username'])
+        send(send_name, content, request.session['username'],source_id)
         return JsonResponse({'res': 0, 'bgurl': source[0].source_bgurl, 'psw': source[0].source_psw})
             # return JsonResponse({'res': "无此页面"})
 
 
 class SeacherView(View):
+    """搜索"""
     def get(self,request):
         skey=request.GET.get('seacherkey')
         if not skey:
