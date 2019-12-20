@@ -45,7 +45,6 @@ class GoodClass(View):
             contacts = paginator.page(paginator.num_pages)
         list2 = []
         list3 = []
-        print(len(contacts))
         if len(contacts) >= 4 and len(contacts) < 8:
             list1 = [contacts[0], contacts[1], contacts[2], contacts[3]]
         elif len(contacts) >= 8 and len(contacts) < 12:
@@ -57,8 +56,6 @@ class GoodClass(View):
             list3 = [contacts[8], contacts[9], contacts[10], contacts[11]]
         else:
             list1 = [contacts[0], contacts[1], contacts[2], contacts[3]]
-        print(len(list1))
-        print('list2:',len(list2))
         return render(request, 'blackmain/goodclass.html',
                       {'contacts': contacts, 'paginator': paginator, 'list1': list1, 'list2': list2, 'list3': list3,'comment_new':comment_new})
 
