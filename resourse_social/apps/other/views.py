@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -33,7 +35,6 @@ class SourceView(View):
             'buysource': buysource,
             'comment_new':comment_new,
         }
-        print(zy_comment)
         return render(request, 'other/contentzy.html', context)
 
 
@@ -52,11 +53,15 @@ class BuyView(View):
         user_name = request.POST.get('user_name')
         source_id = request.POST.get('source_id')
         source_value = request.POST.get('source_value')
-        source = Buys.objects.filter(id=source_id)
-
+        print("source_id",source_id)
+        source = Buys.objects.filter(source_id=source_id)
+        print(source)
+        print('33333')
         for record in source:
+            print('222222')
             if record.user == user_name:
-                return JsonResponse({'res': 11, 'errmsg': '您已购买此资源'})
+                print("111111")
+                return JsonResponse({'res': 1, 'errmsg': '您已购买此资源'})
             else:
                 continue
         user = Users.objects.get(username=user_name)
