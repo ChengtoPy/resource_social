@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views import View
 
 from apps.srik.models import Information, Posts, Answer, Comment, Img
+from utils.message import Comment_Msg
 
 
 class IndexView(View):
@@ -13,6 +14,7 @@ class IndexView(View):
         contact_list = Posts.objects.all().order_by("-create_time")  # 排序
         paginator = Paginator(contact_list, 5)  # 每页显示25个数据
         page = request.GET.get('page', '1')
+        comment_new = Comment_Msg()  # 显示最新评论
         try:
             contacts = paginator.page(page)
         except PageNotAnInteger:
@@ -22,7 +24,7 @@ class IndexView(View):
             # 如果页面超出范围，提交最后一个页面
             contacts = paginator.page(paginator.num_pages)
 
-        return render(request, 'blackmain/index.html', {'contacts': contacts, 'paginator': paginator})
+        return render(request, 'blackmain/index.html', {'contacts': contacts, 'paginator': paginator, 'comment_new':comment_new})
 
 
 class GoodClass(View):
@@ -30,9 +32,9 @@ class GoodClass(View):
 
     def get(self, request):
         contact_list = Posts.objects.all().order_by("-create_time")
-        paginator = Paginator(contact_list, 12)  # Show 25 contacts per page
-
+        paginator = Paginator(contact_list, 25)  # Show 25 contacts per page
         page = request.GET.get('page', '1')
+        comment_new = Comment_Msg()  # 显示最新评论
         try:
             contacts = paginator.page(page)
         except PageNotAnInteger:
@@ -43,6 +45,7 @@ class GoodClass(View):
             contacts = paginator.page(paginator.num_pages)
         list2 = []
         list3 = []
+        print(len(contacts))
         if len(contacts) >= 4 and len(contacts) < 8:
             list1 = [contacts[0], contacts[1], contacts[2], contacts[3]]
         elif len(contacts) >= 8 and len(contacts) < 12:
@@ -55,15 +58,17 @@ class GoodClass(View):
         else:
             list1 = [contacts[0], contacts[1], contacts[2], contacts[3]]
         print(len(list1))
+        print('list2:',len(list2))
         return render(request, 'blackmain/goodclass.html',
-                      {'contacts': contacts, 'paginator': paginator, 'list1': list1, 'list2': list2, 'list3': list3})
+                      {'contacts': contacts, 'paginator': paginator, 'list1': list1, 'list2': list2, 'list3': list3,'comment_new':comment_new})
 
 
 class EnjoyView(View):
     """分享资源"""
 
     def get(self, request):
-        return render(request, 'blackmain/enjoy.html')
+        comment_new = Comment_Msg()  # 显示最新评论
+        return render(request, 'blackmain/enjoy.html',{'comment_new':comment_new})
 
     def post(self, request):
         title = request.POST.get('title')  # 资源主题
@@ -93,9 +98,9 @@ class BwView(View):
     """百度网盘教程资源"""
 
     def get(self, request):
+        comment_new = Comment_Msg()  # 显示最新评论
         contact_list = Posts.objects.filter(source_type="百度网盘资源").order_by("-create_time")
         paginator = Paginator(contact_list, 5)  # Show 25 contacts per page
-
         page = request.GET.get('page', '1')
         try:
             contacts = paginator.page(page)
@@ -106,7 +111,7 @@ class BwView(View):
             # 如果页面超出范围，提交最后一个页面
             contacts = paginator.page(paginator.num_pages)
 
-        return render(request, 'blackmain/bw.html', {'contacts': contacts, 'paginator': paginator})
+        return render(request, 'blackmain/bw.html', {'contacts': contacts, 'paginator': paginator,'comment_new':comment_new})
 
 
 class BcView(View):
@@ -115,7 +120,7 @@ class BcView(View):
     def get(self, request):
         contact_list = Posts.objects.filter(source_type="编程源码资源").order_by("-create_time")
         paginator = Paginator(contact_list, 7)  # 每页显示的数据量
-
+        comment_new = Comment_Msg()  # 显示最新评论
         page = request.GET.get('page', '1')
         try:
             contacts = paginator.page(page)
@@ -125,27 +130,29 @@ class BcView(View):
         except EmptyPage:
             # If page is out of range (e.g. 9999), deliver last page of results.
             contacts = paginator.page(paginator.num_pages)
-        return render(request, 'blackmain/bcym.html', {'contacts': contacts, 'paginator': paginator})
+        return render(request, 'blackmain/bcym.html', {'contacts': contacts, 'paginator': paginator,'comment_new':comment_new})
 
 
 class AnswerView(View):
     """有问必答"""
 
     def get(self, request):
+        comment_new = Comment_Msg()  # 显示最新评论
         answer_list = Answer.objects.all().order_by("-question_time")
         print(answer_list)
-        return render(request, 'blackmain/answer.html', {'answer': answer_list})
+        return render(request, 'blackmain/answer.html', {'answer': answer_list,'comment_new':comment_new})
 
 
 class GetView(View):
     """b币获取"""
 
     def get(self, request):
+        comment_new = Comment_Msg()  # 显示最新评论
         zy_comment = Comment.objects.filter(source_id=111111)
         context = {
             'zy_comment': zy_comment,
+            'comment_new':comment_new
         }
-        print(zy_comment)
         return render(request, 'blackmain/getcoin.html', context)
 
 
@@ -155,7 +162,8 @@ class VipView(View):
     """vip模板"""
 
     def get(self, request):
-        return render(request, 'blackmain/vip.html')
+        comment_new = Comment_Msg()  # 显示最新评论
+        return render(request, 'blackmain/vip.html',{'comment_new':comment_new})
 
 
 class CommentView(View):
@@ -163,13 +171,13 @@ class CommentView(View):
     def post(self, request):
         comment_sourcename = request.POST.get('comment_sourcename')
         source_id = request.POST.get('source_id')
-        source_name = request.POST.get('source_name')
+        source_name = request.POST.get('source_name')   # 评论的资源名字
         comment_content = request.POST.get('comment_content')
         comment_name = request.POST.get('comment_name')
-        info_tx = comment_name + "评论你的:" + comment_sourcename + " 资源" + comment_content
+        info_tx = comment_name + "评论你的资源:" + source_name + ",内容为:" + comment_content
         try:
             passport = Comment(comment_sourcename=comment_sourcename, source_id=source_id,
-                               comment_content=comment_content, comment_name=comment_name)
+                               comment_content=comment_content, comment_name=comment_name,source_name=source_name)
             passport.save()
 
             info = Information(info_content=info_tx, receive_name=comment_sourcename, send_name=comment_name, source_id=source_id)

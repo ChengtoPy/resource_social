@@ -5,6 +5,7 @@ from django.views import View
 
 from apps.srik.models import Posts, Comment, Buys, Img, Information
 from apps.user.models import Users
+from utils.message import Comment_Msg
 
 
 class SourceView(View):
@@ -14,6 +15,7 @@ class SourceView(View):
         source = Posts.objects.filter(id=sid)
         zy_comment = Comment.objects.filter(source_id=sid)
         buysource = Buys.objects.filter(source_id=sid)
+        comment_new = Comment_Msg()  # 显示最新评论
         # source_img = Img.objects.filter(wpurl=source[0].source_bgurl)
         context = {
             'title': source[0].title,
@@ -29,6 +31,7 @@ class SourceView(View):
             'share_time': source[0].create_time,
             'zy_comment': zy_comment,
             'buysource': buysource,
+            'comment_new':comment_new,
         }
         print(zy_comment)
         return render(request, 'other/contentzy.html', context)
@@ -53,7 +56,7 @@ class BuyView(View):
 
         for record in source:
             if record.user == user_name:
-                return JsonResponse({'res': 1, 'errmsg': '您已购买此资源'})
+                return JsonResponse({'res': 11, 'errmsg': '您已购买此资源'})
             else:
                 continue
         user = Users.objects.get(username=user_name)

@@ -36,6 +36,7 @@ class Comment(models.Model):
     comment_sourcename = models.CharField(verbose_name='评论资源用户名', max_length=100)
     comment_name = models.CharField(verbose_name='评论用户名', max_length=100)
     source_id = models.IntegerField(db_column='sourceid', default=1,verbose_name='评论资源id')
+    source_name = models.CharField(db_column='评论资源名',max_length=100,null=True)
     comment_content= models.TextField(verbose_name='评论内容', default='？？')
     comment_time = models.DateTimeField(verbose_name='评论时间', default=timezone.now)
     class Meta:

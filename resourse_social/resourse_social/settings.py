@@ -143,7 +143,7 @@ CACHES = {
 }
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "session"
-SESSION_COOKIE_AGE = 3600 * 1
+SESSION_COOKIE_AGE = 3600 * 24 * 15
 # 通过POST调用这个URL，但是URL不是以斜杠结尾的，而且您设置了APPEND_SLASH。Django在维护POST数据时不能重定向到斜杠URL。
 APPEND_SLASH = False
 # 支付宝沙箱配置信息

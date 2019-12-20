@@ -8,6 +8,7 @@ from django.views import View
 
 from apps.srik.models import Posts, Information
 from apps.user.models import Users
+from utils.message import Comment_Msg
 
 
 class LoginView(View):
@@ -97,6 +98,7 @@ class UserCenter(View):
     """用户中心"""
 
     def get(self, request):
+        comment_new = Comment_Msg()  # 显示最新评论
         user_info = Users.objects.get(username=request.session['username'])
         source = Posts.objects.filter(share_name=request.session['username'])
         info = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
@@ -118,6 +120,7 @@ class UserCenter(View):
             'contacts': contacts,
             'paginator': paginator,
             'user_info': user_info,
+            'comment_new':comment_new,
         }
         return render(request, 'users/user_center_info.html', context)
 
@@ -133,6 +136,7 @@ class UserInfoView(View):
     """用户消息"""
 
     def get(self, request):
+        comment_new = Comment_Msg()  # 显示最新评论
         user_info = Users.objects.get(username=request.session['username'])
         source = Posts.objects.filter(share_name=request.session['username'])
 
@@ -143,6 +147,7 @@ class UserInfoView(View):
             'info': info,
             'info_num': len(info_n),
             'user_info': user_info,
+            'comment_new':comment_new
         }
         return render(request, 'users/user_info.html', context)
         # else:
@@ -157,8 +162,6 @@ class InfoModify(View):
         username = request.session['username']  # 获取当前用户名
         des = request.POST.get('des')
         img = request.POST.get('img')
-        print(img)
-        print(username_new)
         user_info = Users.objects.get(username=username)
         # 判断新用户名和旧用户名是否相同，新用户名是否为空,是否符合格式
         if username_new != username and len(username_new) != 0 and re.match(r'^[a-zA-Z0-9_\u4e00-\u9fa5]{5,20}$', username_new):
@@ -172,6 +175,7 @@ class InfoModify(View):
     #     return JsonResponse({'res': 1, 'errmsg': '无效请求'})
     def get(self, request):
         if request.method == "GET":
+            comment_new = Comment_Msg()  # 显示最新评论
             user_info = Users.objects.get(username=request.session['username'])
             source = Posts.objects.filter(share_name=request.session['username'])
             info = Information.objects.filter(receive_name=request.session['username']).order_by('-send_time')
@@ -181,6 +185,7 @@ class InfoModify(View):
                 'info': info,
                 'info_num': len(info_n),
                 'user_info': user_info,
+                'comment_new':comment_new
             }
             return render(request, 'users/user_info.html', context)
         else:

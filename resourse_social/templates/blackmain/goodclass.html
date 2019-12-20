@@ -51,40 +51,41 @@
 		        	<li><a href="{% url 'other:seacher' %}?seacherkey=项目管理">项目管理</a></li>
 		        	<li><a href="{% url 'other:seacher' %}?seacherkey=骇客">骇客</a></li>
 		        </ul>
+
 		    </div>
-      </div>
-    </div>
-      <div class="content-block hot-content hidden-xs">
+
         <h2 class="title"><strong>精品教程</strong></h2>
-			    <div id="row2" style="width: 100%;height: 250px;display: flex;">
+			    <div id="row2" style="width: 90%;height: 250px;display: flex;">
 					{% for good in list1 %}
 			        <div >
-			        	<a href="{% url 'other:seacher' %}?n={{good.id}}&s=4566%{{good.id}}7%38%54"><img src="/static/img/zydemo.jpg"></img></a>
+			        	<a href="{% url 'other:source' %}?n={{good.id}}&s=4566%{{good.id}}7%38%54"><img src="/static/images/icon/123.jpg"></img></a>
 						    <p class="p1"><strong>{{good.title}}</strong></p>
 						    <p class="p2">B币：{{good.source_valuemarks}}</p>
 			        </div>
 					{% endfor %}
 			    </div>
-			   <div id="row2" style="width: 100%;height: 250px;display: flex;">
+			   <div id="row2" style="width: 90%;height: 250px;display: flex;">
 			       {% for good in list2 %}
 			        <div >
-			        	<a href="{% url 'other:seacher' %}?n={{good.id}}&s=4566%{{good.id}}7%38%54"><img src="/static/img/zydemo.jpg"></img></a>
+			        	<a href="{% url 'other:source' %}?n={{good.id}}&s=4566%{{good.id}}7%38%54"><img src="/static/images/icon/123.jpg"></img></a>
 						    <p class="p1"><strong>{{good.title}}</strong></p>
 						    <p class="p2">B币：{{good.source_valuemarks}}</p>
 			        </div>
 					{% endfor %}
 			    </div>
-			    <div id="row2" style="width: 100%;height: 250px;display: flex;">
+			    <div id="row2" style="width: 90%;height: 250px;display: flex;">
 			        {% for good in list3 %}
 			        <div >
-			        	<a href="{% url 'other:seacher' %}?n={{good.id}}&s=4566%{{good.id}}7%38%54"><img src="/static/img/zydemo.jpg"></img></a>
+			        	<a href="{% url 'other:source' %}?n={{good.id}}&s=4566%{{good.id}}7%38%54"><img src="/static/img/zydemo.jpg"></img></a>
 						    <p class="p1"><strong>{{good.title}}</strong></p>
 						    <p class="p2">B币：{{good.source_valuemarks}}</p>
 			        </div>
 					{% endfor %}
-			    </div>
+
     </div>
-      <div class="content-block new-content">
+
+      </div>
+    <div class="content-block new-content">
         <div class="quotes" style="margin-top:15px">
 		 <a href="?page=1">首页</a>
           {% if contacts.has_previous %}
@@ -107,7 +108,7 @@
 		</div>
       </div>
     </div>
-  </div>
+    </div>
 {% endblock mainbody %}
 
 
