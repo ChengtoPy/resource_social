@@ -5,7 +5,7 @@
 {% block mainbody %}
 
   <div class="content-wrap"><!--内容-->
-    <div class="content" style="margin-left: 100px;"> 
+    <div class="content" style="margin-left: 100px;">
       <div class="content-block hot-content hidden-xs" >
         <h2 class="title"><strong>用户中心</strong></h2>
 			    <div id="row1" style="width: 100%;height: 120px;display:block;margin:0;padding: 0;">
@@ -14,7 +14,7 @@
 			        	<p id="p1" style="position:absolute;display:block;width:100%;margin-left:120px;margin-top:10px;color: blue;font-size: 20px;">{{ request.session.username }}</p>
 			        	<p id="p2" style="position:absolute;width:100%;margin-left:120px;margin-top:40px; blue;font-size:14px;">注册时间：{{user_info.register_time}}</p>
 			        	<p id="p2" style="position:absolute;width:100%;margin-left:120px;margin-top:60px;blue;font-size:14px;">个人说明：{{user_info.description}}</p>
-			        </div>        
+			        </div>
 			    </div>
       </div>
       <div class="content-block new-content">
@@ -79,7 +79,7 @@
           <div class="comment-title">
           	<div class="form-group">
               <label for="commentName">头像更改</label>
-              <input type="file" id="test-image-file" name="img" accept="image/gif, image/jpeg, image/png, image/jpg">
+              <input type="file" id="test-image-file" onchange="xxx(this)" name="img" accept="image/gif, image/jpeg, image/png, image/jpg">
             </div>
           </div>
           <div class="comment-form">
@@ -92,11 +92,16 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
 <script>
+function xxx(a){
+    var img = a.files[0];
+    alert(img);
+    console.log(img)
+}
     $(document).ready(function(){
           $("#usermodify").click(function(){
             var des = $('#des').val();
@@ -117,7 +122,7 @@
                 var params = {
                 'username': user_name,
                 'des': des,
-                'img': '1',
+                'img': img,
                 'csrfmiddlewaretoken': '{{ csrf_token  }}'
                 };
                 $.post("{% url 'user:modify' %}",params,function(result){
@@ -138,36 +143,4 @@
     });
 </script>
 {% endblock mainbody %}
-{% block rightb %}
-  <aside class="sidebar visible-lg"><!--右侧>992px显示-->
-    <div class="sentence"> <strong>每日一句</strong>
-      <h2>2019年4月1日 星期一</h2>
-      <p>你是我人生中唯一的主角，我却只能是你故事中的一晃而过得路人甲。</p>
-    </div>
-    <div class="sidebar-block recommend">
-      <h2 class="title"><strong>最近更新</strong></h2>
-      <ul>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有...</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有 ...</span> <span class="text-muted">阅读(2165)</span></a></li>
-      </ul>
-    </div>
-    <div class="sidebar-block comment">
-      <h2 class="title"><strong>最新评论</strong></h2>
-      <ul>
-        <li data-toggle="tooltip" data-placement="top" title="站长的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>小阳站长</strong> (2019-4-1) 说：<br />
-           欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="读者墙上的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>jjl</strong> (2019-4-1) 说：<br />
-          欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦...</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="jjl的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>molin</strong> (2019-4-1) 说：<br />
-          欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="摩天轮和将军令...的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>小哥</strong> (2019-4-1) 说：<br />
-          欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="小哥和JJ林·...的评论"><a target="_blank" href=""><span class="face"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text"><strong>哈哈</strong> (2019-4-1) 说：<br />
-          欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</span></a></li>
-      </ul>
-    </div>
-  </aside>
-{% endblock rightb %}
+

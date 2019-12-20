@@ -156,6 +156,8 @@ class InfoModify(View):
         username_new = request.POST.get('username')
         username = request.session['username']  # 获取当前用户名
         des = request.POST.get('des')
+        img = request.POST.get('img')
+        print(img)
         print(username_new)
         user_info = Users.objects.get(username=username)
         # 判断新用户名和旧用户名是否相同，新用户名是否为空,是否符合格式

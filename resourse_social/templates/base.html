@@ -188,99 +188,43 @@ window.onload = function() {
       <div class="content-block new-content">
         <h2 class="title"><strong>热门资源</strong></h2>
         <div class="row">
-          <div class="news-list">
-            <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="/static/images/py.png" alt=""> </a> </div>
-            <div class="news-info col-xs-7 col-sm-7 col-md-8">
-              <dl>
-                <dt> <a href="{% url 'other:source' %}" target="_blank" > python人工智能教程 </a> </dt>
-                <dd><span class="name"><a href="" title="由 jjl 发布" rel="author">jjl</a></span> <span class="identity"></span> <span class="time"> 2019-4-1 </span></dd>
-                <dd class="text">python人工智能教程</dd>
-              </dl>
-              <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">jjl</a> </span> <span class="look"> 共 <strong>2126</strong> 查看 <strong> 12 </strong> 使用 </span> </div>
-            </div>
-          </div>
-          <div class="news-list">
-            <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="/static/images/block.jpg" alt=""> </a> </div>
-            <div class="news-info col-xs-7 col-sm-7 col-md-8">
-              <dl>
-                <dt> <a href="" target="_blank" >go语言区块链 源码</a> </dt>
-                <dd><span class="name"><a href="" title="由 jj林 发布" rel="author">jj林</a></span> <span class="identity"></span> <span class="time"> 2019-4-1 </span></dd>
-                <dd class="text">go语言区块链 源码分享</dd>
-              </dl>
-              <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">jj林</a> </span> <span class="look"> 共 <strong>2126</strong> 查看 <strong> 3</strong> 使用 </span> </div>
-            </div>
-          </div>
-          <div class="news-list">
-            <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="/static/images/javaweb.jpg" alt=""> </a> </div>
-            <div class="news-info col-xs-7 col-sm-7 col-md-8">
-              <dl>
-                <dt> <a href="" target="_blank" > javaweb教程百度网盘资源 </a> </dt>
-                <dd><span class="name"><a href="" title="由 jjl 发布" rel="author">jjl</a></span> <span class="identity"></span> <span class="time"> 2019-4-1 </span></dd>
-                <dd class="text">javaweb教程百度网盘资源，全套教程</dd>
-              </dl>
-              <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">jjl</a> </span> <span class="look"> 共 <strong>2126</strong> 查看 <strong> 2 </strong> 使用 </span> </div>
-            </div>
-          </div>
+         {% for contact in contacts %}
           <div class="news-list">
             <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="/static/images/logo.jpg" alt=""> </a> </div>
             <div class="news-info col-xs-7 col-sm-7 col-md-8">
               <dl>
-                <dt> <a href="" target="_blank" > Black学习社 </a> </dt>
-                <dd><span class="name"><a href="" title="由 jjl 发布" rel="author">jjl</a></span> <span class="identity"></span> <span class="time"> 2019-4-1 </span></dd>
-                <dd class="text">欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</dd>
+                <dt> <a href="{% url 'other:source' %}?n={{contact.id}}&s=4566%{{contact.id}}7%38%54" target="_blank" > {{contact.title}} </a> </dt>
+                <dd><span class="name"><a href="#" title="{{contact.title}}" rel="author">{{contact.share_name}}</a></span> <span class="identity"></span> <span class="time"> {{contact.tcreate_time}} </span></dd>
+                <dd class="text">{{contact.content}}</dd>
               </dl>
-              <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">jjl</a> </span> <span class="look"> 共 <strong>2126</strong> 查看<strong> 12 </strong> 使用  </span> </div>
+              <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">{{contact.share_name}}</a> </span> <span class="look"> 共 <strong>2126</strong> 查看<strong> 12 </strong> 使用  </span> </div>
             </div>
           </div>
-          <div class="news-list">
-            <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="/static/images/logo.jpg" alt=""> </a> </div>
-            <div class="news-info col-xs-7 col-sm-7 col-md-8">
-              <dl>
-                <dt> <a href="" target="_blank" > Black学习社 </a> </dt>
-                <dd><span class="name"><a href="" title="由 jjl 发布" rel="author">jjl</a></span> <span class="identity"></span> <span class="time"> 2019-4-1 </span></dd>
-                <dd class="text">欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</dd>
-              </dl>
-              <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">jjl</a> </span> <span class="look"> 共 <strong>2126</strong> 查看 <strong> 12 </strong> 使用 </span> </div>
-            </div>
-          </div>
-          <div class="news-list">
-            <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="/static/images/logo.jpg" alt=""> </a> </div>
-            <div class="news-info col-xs-7 col-sm-7 col-md-8">
-              <dl>
-                <dt> <a href="" target="_blank" > Black学习社 </a> </dt>
-                <dd><span class="name"><a href="" title="由 jjl 发布" rel="author">jjl</a></span> <span class="identity"></span> <span class="time"> 2019-4-1 </span></dd>
-                <dd class="text">欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</dd>
-              </dl>
-              <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">jjl</a> </span> <span class="look"> 共 <strong>2126</strong> 查看 <strong> 12 </strong> 使用 </span> </div>
-            </div>
-          </div>
-          <div class="news-list">
-            <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="/static/images/logo.jpg" alt=""> </a> </div>
-            <div class="news-info col-xs-7 col-sm-7 col-md-8">
-              <dl>
-                <dt> <a href="" target="_blank" > Black学习社 </a> </dt>
-                <dd><span class="name"><a href="" title="由 jjl 发布" rel="author">jjl</a></span> <span class="identity"></span> <span class="time"> 2019-4-1 </span></dd>
-                <dd class="text">欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</dd>
-              </dl>
-              <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">jjl</a> </span> <span class="look"> 共 <strong>2126</strong> 查看 <strong> 12 </strong> 使用 </span> </div>
-            </div>
-          </div>
-          <div class="news-list">
-            <div class="news-img col-xs-5 col-sm-5 col-md-4"> <a target="_blank" href=""><img src="/static/images/logo.jpg" alt=""> </a> </div>
-            <div class="news-info col-xs-7 col-sm-7 col-md-8">
-              <dl>
-                <dt> <a href="" target="_blank" > Black学习社 </a> </dt>
-                <dd><span class="name"><a href="" title="由 jjl 发布" rel="author">jjl</a></span> <span class="identity"></span> <span class="time"> 2019-4-1 </span></dd>
-                <dd class="text">欢迎来到Black学习社，在这里你可以获得各种学习资源，也可以分享你的资源哦</dd>
-              </dl>
-              <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">jjl</a> </span> <span class="look"> 共 <strong>2126</strong> 查看 <strong> 12 </strong> 使用 </span> </div>
-            </div>
-          </div>
+         {% endfor %}
         </div>
         <!--<div class="news-more" id="pagination">
         	<a href="">查看更多</a>
         </div>-->
-        <div class="quotes" style="margin-top:15px"><span class="disabled">首页</span><span class="disabled">上一页</span><span class="current">1</span><a href="">2</a><a href="">下一页</a><a href="">尾页</a></div>
+        <div class="quotes" style="margin-top:15px">
+          <a href="?page=1">首页</a>
+          {% if contacts.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">上一页</a>
+          {% endif %}
+
+            {% for  page_number in  paginator.page_range %}
+            {# 获取当前页的页码 #}
+                {% if page_number == page.number %}
+                    {# 如果是当前页的话，选中 #}
+                    <a href="?page={{page_number}}">{{page_number}}</a>
+                {% else %}
+                    <a href="?page={{page_number}}">{{page_number}}</a>
+                {% endif %}
+            {% endfor %}
+
+          {% if contacts.has_next %}
+              <a href="?page={{ contacts.next_page_number }}">下一页</a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
@@ -289,7 +233,7 @@ window.onload = function() {
   {% block rightb %}
   <aside class="sidebar visible-lg"><!--右侧>992px显示-->
     <div class="sentence"> <strong>每日一句</strong>
-      <h2>2019年5月21日 星期二</h2>
+      <h2>2019年12月20日 星期二</h2>
       <p>你是我人生中唯一的主角，我却只能是你故事中的一晃而过得路人甲。</p>
     </div>
     <div class="sidebar-block recommend">

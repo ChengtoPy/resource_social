@@ -104,4 +104,8 @@ class SeacherView(View):
             return render(request, 'other/seacher.html', {'contacts': contacts, 'paginator': paginator,'num':len(contact_list),'key':skey})
             # return JsonResponse({'res': "无此页面"})
 
+
+class ImgView(View):
+    def get(self):
+        return
 # Create your views here.
