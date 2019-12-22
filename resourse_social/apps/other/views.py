@@ -7,7 +7,7 @@ from django.views import View
 
 from apps.srik.models import Posts, Comment, Buys, Img, Information
 from apps.user.models import Users
-from utils.message import Comment_Msg
+from utils.message import Comment_Msg, Social_Msg
 
 
 class SourceView(View):
@@ -18,6 +18,7 @@ class SourceView(View):
         zy_comment = Comment.objects.filter(source_id=sid)
         buysource = Buys.objects.filter(source_id=sid)
         comment_new = Comment_Msg()  # 显示最新评论
+        socials = Social_Msg()  # 显示最新资源信息
         # source_img = Img.objects.filter(wpurl=source[0].source_bgurl)
         context = {
             'title': source[0].title,
@@ -34,6 +35,7 @@ class SourceView(View):
             'zy_comment': zy_comment,
             'buysource': buysource,
             'comment_new':comment_new,
+            'socials':socials
         }
         return render(request, 'other/contentzy.html', context)
 
@@ -115,6 +117,7 @@ class SeacherView(View):
 
 
 class ImgView(View):
+    """图片配置cdn"""
     def get(self):
-        return
+        pass
 # Create your views here.

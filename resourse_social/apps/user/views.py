@@ -8,7 +8,7 @@ from django.views import View
 
 from apps.srik.models import Posts, Information
 from apps.user.models import Users
-from utils.message import Comment_Msg
+from utils.message import Comment_Msg, Social_Msg
 
 
 class LoginView(View):
@@ -99,6 +99,7 @@ class UserCenter(View):
 
     def get(self, request):
         comment_new = Comment_Msg()  # 显示最新评论
+        socials = Social_Msg()  # 显示最新资源信息
         user_info = Users.objects.get(username=request.session['username'])
         source = Posts.objects.filter(share_name=request.session['username'])
         info = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
@@ -121,6 +122,7 @@ class UserCenter(View):
             'paginator': paginator,
             'user_info': user_info,
             'comment_new':comment_new,
+            'socials':socials,
         }
         return render(request, 'users/user_center_info.html', context)
 
@@ -137,6 +139,7 @@ class UserInfoView(View):
 
     def get(self, request):
         comment_new = Comment_Msg()  # 显示最新评论
+        socials = Social_Msg()  # 显示最新资源信息
         user_info = Users.objects.get(username=request.session['username'])
         source = Posts.objects.filter(share_name=request.session['username'])
 
@@ -147,7 +150,8 @@ class UserInfoView(View):
             'info': info,
             'info_num': len(info_n),
             'user_info': user_info,
-            'comment_new':comment_new
+            'comment_new':comment_new,
+            'socials':socials,
         }
         return render(request, 'users/user_info.html', context)
         # else:
@@ -176,6 +180,7 @@ class InfoModify(View):
     def get(self, request):
         if request.method == "GET":
             comment_new = Comment_Msg()  # 显示最新评论
+            socials = Social_Msg()  # 显示最新资源信息
             user_info = Users.objects.get(username=request.session['username'])
             source = Posts.objects.filter(share_name=request.session['username'])
             info = Information.objects.filter(receive_name=request.session['username']).order_by('-send_time')
@@ -185,7 +190,8 @@ class InfoModify(View):
                 'info': info,
                 'info_num': len(info_n),
                 'user_info': user_info,
-                'comment_new':comment_new
+                'comment_new':comment_new,
+                'socials':socials
             }
             return render(request, 'users/user_info.html', context)
         else:

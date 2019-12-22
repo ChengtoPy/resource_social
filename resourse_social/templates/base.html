@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -212,24 +212,22 @@ window.onload = function() {
   {% block rightb %}
   <aside class="sidebar visible-lg"><!--右侧>992px显示-->
     <div class="sentence"> <strong>每日一句</strong>
-      <h2>2019年12月20日 星期二</h2>
+      <h2>2019年12月21日 星期二</h2>
       <p>你是我人生中唯一的主角，我却只能是你故事中的一晃而过得路人甲。</p>
     </div>
     <div class="sidebar-block recommend">
       <h2 class="title"><strong>最近更新</strong></h2>
       <ul>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有...</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">Black学习社，各种学习资源，应有尽有 ...</span> <span class="text-muted">阅读(2165)</span></a></li>
+          {% for social in socials %}
+        <li><a target="_blank" href="{% url 'other:source' %}?n={{social.id}}&s=4566%{{social.id}}7%38%54"> <span class="thumb"><img src="{% static 'images/icon/icon.png' %}" alt=""></span> <span class="text">资源:<strong>{{ social.title }}</strong><br>描述:{{ social.content }}</span> <span class="text-muted">阅读({{ social.click_nums }})</span></a></li>
+          {% endfor %}
       </ul>
     </div>
     <div class="sidebar-block comment">
       <h2 class="title"><strong>最新评论</strong></h2>
       <ul>
           {% for new in comment_new %}
-        <li data-toggle="tooltip" data-placement="top" title="{{ new.comment_name }}的评论"><a target="_blank" href=""><span class="face"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text"><strong>{{ new.comment_name }}</strong> ({{ new.comment_time }}) 说：<br />
+        <li data-toggle="tooltip" data-placement="top" title="{{ new.comment_name }}的评论"><a target="_blank" href="{% url 'other:source' %}?n={{new.source_id}}&s=4566%{{new.source_id}}7%38%54"><span class="face"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text"><strong>{{ new.comment_name }}</strong> ({{ new.comment_time }}) 说：<br />
             {{ new.comment_content }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>----资&nbsp;源</strong>:{{ new.source_name }}</a></li>
           {% endfor %}
       </ul>
