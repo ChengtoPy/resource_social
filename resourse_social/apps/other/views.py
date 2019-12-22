@@ -12,38 +12,42 @@ from utils.message import Comment_Msg, Social_Msg
 
 class SourceView(View):
     """资源信息"""
+
     def get(self, request):
         sid = request.GET.get('n')
-        source = Posts.objects.filter(id=sid)
+        source = Posts.objects.filter(id=sid).first()
         zy_comment = Comment.objects.filter(source_id=sid)
         buysource = Buys.objects.filter(source_id=sid)
         comment_new = Comment_Msg()  # 显示最新评论
         socials = Social_Msg()  # 显示最新资源信息
         # source_img = Img.objects.filter(wpurl=source[0].source_bgurl)
+        source.click_nums += 1  # 浏览量+1
+        source.save()
+        # print(source[0].click_nums)
         context = {
-            'title': source[0].title,
-            'content': source[0].content,
-            'source_bgurl': source[0].source_bgurl,
-            'source_psw': source[0].source_psw,
-            'source_valuemarks': source[0].source_valuemarks,
-            'click_nums': source[0].click_nums,
-            'load_nums': source[0].load_nums,
-            'source_price': source[0].source_price,
-            'share_name': source[0].share_name,
-            'source_id': source[0].id,
-            'share_time': source[0].create_time,
+            'title': source.title,
+            'content': source.content,
+            'source_bgurl': source.source_bgurl,
+            'source_psw': source.source_psw,
+            'source_valuemarks': source.source_valuemarks,
+            'click_nums': source.click_nums,
+            'load_nums': source.load_nums,
+            'source_price': source.source_price,
+            'share_name': source.share_name,
+            'source_id': source.id,
+            'share_time': source.create_time,
             'zy_comment': zy_comment,
             'buysource': buysource,
-            'comment_new':comment_new,
-            'socials':socials
+            'comment_new': comment_new,
+            'socials': socials
         }
         return render(request, 'other/contentzy.html', context)
 
 
-def send(send_name,content,receive_name,source_id):
+def send(send_name, content, receive_name, source_id):
     # 发送消息
     try:
-        buy = Information(send_name=send_name, receive_name=receive_name, info_content=content,source_id=source_id)
+        buy = Information(send_name=send_name, receive_name=receive_name, info_content=content, source_id=source_id)
         buy.save()
     except Exception as e:
         print("e: ", e)
@@ -51,11 +55,12 @@ def send(send_name,content,receive_name,source_id):
 
 class BuyView(View):
     """购买资源"""
-    def post(self,request):
+
+    def post(self, request):
         user_name = request.POST.get('user_name')
         source_id = request.POST.get('source_id')
         source_value = request.POST.get('source_value')
-        print("source_id",source_id)
+        print("source_id", source_id)
         source = Buys.objects.filter(source_id=source_id)
         print(source)
         print('33333')
@@ -87,15 +92,16 @@ class BuyView(View):
         send_name = "系统消息"
         content = "你已兑换资源" + str(source[0].title) + "网盘/开源网址" + str(source[0].source_bgurl) + " 网盘密码：" + str(
             source[0].source_psw)
-        send(send_name, content, request.session['username'],source_id)
+        send(send_name, content, request.session['username'], source_id)
         return JsonResponse({'res': 0, 'bgurl': source[0].source_bgurl, 'psw': source[0].source_psw})
-            # return JsonResponse({'res': "无此页面"})
+        # return JsonResponse({'res': "无此页面"})
 
 
 class SeacherView(View):
     """搜索"""
-    def get(self,request):
-        skey=request.GET.get('seacherkey')
+
+    def get(self, request):
+        skey = request.GET.get('seacherkey')
         if not skey:
             error_msg = '请输入关键词'
             return render(request, 'other/seacher.html', {'error_msg': error_msg})
@@ -112,12 +118,14 @@ class SeacherView(View):
                 # If page is out of range (e.g. 9999), deliver last page of results.
                 contacts = paginator.page(paginator.num_pages)
 
-            return render(request, 'other/seacher.html', {'contacts': contacts, 'paginator': paginator,'num':len(contact_list),'key':skey})
+            return render(request, 'other/seacher.html',
+                          {'contacts': contacts, 'paginator': paginator, 'num': len(contact_list), 'key': skey})
             # return JsonResponse({'res': "无此页面"})
 
 
 class ImgView(View):
     """图片配置cdn"""
+
     def get(self):
         pass
 # Create your views here.
