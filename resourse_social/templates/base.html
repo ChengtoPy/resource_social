@@ -227,8 +227,13 @@ window.onload = function() {
       <h2 class="title"><strong>最新评论</strong></h2>
       <ul>
           {% for new in comment_new %}
-        <li data-toggle="tooltip" data-placement="top" title="{{ new.comment_name }}的评论"><a target="_blank" href="{% url 'other:source' %}?n={{new.source_id}}&s=4566%{{new.source_id}}7%38%54"><span class="face"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text"><strong>{{ new.comment_name }}</strong> ({{ new.comment_time }}) 说：<br />
+              {% if new.source_id == 111111 %}
+                  <li data-toggle="tooltip" data-placement="top" title="{{ new.comment_name }}的评论"><a target="_blank" href="{% url 'srik:get' %}"><span class="face"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text"><strong>{{ new.comment_name }}</strong> ({{ new.comment_time }}) 说：<br />
             {{ new.comment_content }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>----资&nbsp;源</strong>:{{ new.source_name }}</a></li>
+              {% else %}
+            <li data-toggle="tooltip" data-placement="top" title="{{ new.comment_name }}的评论"><a target="_blank" href="{% url 'other:source' %}?n={{new.source_id}}&s=4566%{{new.source_id}}7%38%54"><span class="face"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text"><strong>{{ new.comment_name }}</strong> ({{ new.comment_time }}) 说：<br />
+            {{ new.comment_content }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>----资&nbsp;源</strong>:{{ new.source_name }}</a></li>
+              {% endif %}
           {% endfor %}
       </ul>
     </div>

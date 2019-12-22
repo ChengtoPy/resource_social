@@ -72,7 +72,7 @@
                 <dd><span class="name"><a href="#" title="{{contact.title}}" rel="author">{{contact.share_name}}</a></span> <span class="identity"></span> <span class="time"> {{contact.tcreate_time}} </span></dd>
                 <dd class="text">{{contact.content}}</dd>
               </dl>
-              <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">{{contact.share_name}}</a> </span> <span class="look"> 共 <strong>2126</strong> 查看<strong> 12 </strong> 使用  </span> </div>
+              <div class="news_bot col-sm-7 col-md-8"> <span class="tags visible-lg visible-md"> <a href="">本站</a> <a href="">{{contact.share_name}}</a> </span> <span class="look"> 共 <strong>{{ contact.click_nums }}</strong> 查看<strong> {{ contact.load_nums }} </strong> 使用  </span> </div>
             </div>
           </div>
          {% endfor %}

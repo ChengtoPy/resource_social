@@ -60,14 +60,9 @@ class BuyView(View):
         user_name = request.POST.get('user_name')
         source_id = request.POST.get('source_id')
         source_value = request.POST.get('source_value')
-        print("source_id", source_id)
         source = Buys.objects.filter(source_id=source_id)
-        print(source)
-        print('33333')
         for record in source:
-            print('222222')
             if record.user == user_name:
-                print("111111")
                 return JsonResponse({'res': 1, 'errmsg': '您已购买此资源'})
             else:
                 continue
@@ -86,7 +81,7 @@ class BuyView(View):
             return JsonResponse({'res': 3, 'errmsg': '购买失败'})
 
         posts = Posts.objects.get(id=source_id)
-        posts.load_nums = posts.load_nums + 1
+        posts.load_nums+= 1
         posts.save()
         source = Posts.objects.filter(id=source_id)
         send_name = "系统消息"
