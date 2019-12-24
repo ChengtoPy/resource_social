@@ -13,7 +13,7 @@
         <li><a href="{% url 'srik:get' %}"><span class="glyphicon glyphicon-tags"></span>B币获取</a></li>
         <li><a href="{% url 'srik:enjoy' %}"><span class="glyphicon glyphicon-globe"></span>分享资源</a></li>
       </ul>
-      <div class="feeds"> <a class="feed feed-xlweibo" href="" target="_blank"><i></i>新浪微博</a> <a class="feed feed-txweibo" href="" target="_blank"><i></i>腾讯微博</a> <a class="feed feed-rss" href="" target="_blank"><i></i>订阅本站</a> <a class="feed feed-weixin" data-toggle="popover" data-trigger="hover" title="微信扫一扫" data-html="true" data-content="<img src='/static/images/weixin.jpg' alt=''>" href="javascript:;" target="_blank"><i></i>关注微信</a> </div>
+      <div class="feeds"> <a class="feed feed-xlweibo" href="" target="_blank"><i></i>新浪微博</a> <a class="feed feed-txweibo" href="" target="_blank"><i></i>腾讯微博</a> <a class="feed feed-rss" href="" target="_blank"><i></i>订阅本站</a> <a class="feed feed-weixin" data-toggle="popover" data-trigger="hover" title="微信扫一扫" data-html="true" data-content="<img src='{% static 'images/weixin.jpg' %}' alt=''>" href="javascript:;" target="_blank"><i></i>关注微信</a> </div>
 </div>
 {% endblock fdnav %}
 
@@ -27,13 +27,13 @@
           <li data-target="#carousel-example-generic" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-          <div class="item active"> <a href="content.html" target="_blank"><img src="/static/images/py.png" alt="" /></a>
+          <div class="item active"> <a href="" target="_blank"><img src="/static/images/py.png" alt="" /></a>
             <div class="carousel-caption"> 欢迎来到Black学习社，在这里可以学习，下载，分享各种资源 </div>
             <span class="carousel-bg"></span> </div>
-          <div class="item"> <a href="content.html" target="_blank"><img src="/static/images/block.jpg" alt="" /></a>
+          <div class="item"> <a href="" target="_blank"><img src="/static/images/block.jpg" alt="" /></a>
             <div class="carousel-caption"> 欢迎来到Black学习社，在这里可以学习，下载，分享各种资源 </div>
             <span class="carousel-bg"></span> </div>
-          <div class="item"> <a href="content.html" target="_blank"><img src="/static/images/javaweb.jpg" alt="" /></a>
+          <div class="item"> <a href="" target="_blank"><img src="/static/images/javaweb.jpg" alt="" /></a>
             <div class="carousel-caption"> 欢迎来到Black学习社，在这里可以学习，下载，分享各种资源 </div>
             <span class="carousel-bg"></span> </div>
         </div>
