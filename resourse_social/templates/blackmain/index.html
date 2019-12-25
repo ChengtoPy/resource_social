@@ -1,11 +1,12 @@
 ﻿{% extends 'base.html' %}
+{% load static %}
 {% block title %}首页{% endblock title %}
 
 {% block fdnav %}
 <div class="hidden-xs header"><!--超小屏幕不显示-->
-      <h1 class="logo"> <a href="index.html" title="Black学习社 -尽享学习资源"></a> </h1>
+      <h1 class="logo"> <a href="{% url 'srik:index' %}" title="Black学习社 -尽享学习资源"></a> </h1>
       <ul class="nav hidden-xs-nav">
-        <li class="active"><a href="index.html"><span class="glyphicon glyphicon-home"></span>网站首页</a></li>
+        <li class="active"><a href="{% url 'srik:index' %}"><span class="glyphicon glyphicon-home"></span>网站首页</a></li>
         <li><a href="{% url 'srik:goodclass' %}"><span class="glyphicon glyphicon-erase"></span>精品教程</a></li>
         <li><a href="{% url 'srik:bw' %}"><span class="glyphicon glyphicon-inbox"></span>百度网盘教程资源</a></li>
         <li><a href="{% url 'srik:bc' %}"><span class="glyphicon glyphicon-globe"></span>编程源码资源</a></li>
