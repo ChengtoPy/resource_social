@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-vpafmo7t0=^6g%!epj!%p1l((d#q0h3x90wi*#m&l+s0ouzbx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -71,14 +71,14 @@ TEMPLATES = [
 CACHES = {
     "default": {  # 默认
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/0",
+        "LOCATION": "redis://121.199.74.165:6379/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
     "session": {  # session
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": "redis://121.199.74.165:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -92,8 +92,8 @@ WSGI_APPLICATION = 'resourse_social.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-        'HOST': '127.0.0.1',  # 数据库主机
-        'PORT': 3306,  # 数据库端口
+        'HOST': '122.51.62.177',  # 数据库主机
+        'PORT': 3310,  # 数据库端口
         'USER': 'root',  # 数据库用户名
         'PASSWORD': 'python',  # 数据库用户密码
         'NAME': 'resourse_social',  # 数据库名字
