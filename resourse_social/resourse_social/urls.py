@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^', include('apps.srik.urls')),  # 引入主页的url配置
     url(r'^', include('apps.user.urls')),  # 用户
     url(r'^', include('apps.other.urls')),  # 用户
+    url(r'^', include('apps.qiniuyun.urls')),  # 用户
 ]

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}分享资源{% endblock title %}
 {% block fdnav %}{% endblock fdnav %}
 
@@ -56,7 +57,64 @@
           </div>
         </form>
       </div>
+        <script src="https://cdn.staticfile.org/Plupload/2.1.1/moxie.js"></script>
+<script src="https://cdn.staticfile.org/Plupload/2.1.1/plupload.dev.js"></script>
+<script src="{% static 'js/qiniu.js' %}"></script>
       <script>
+          /*---------关于七牛上传代码start-----------*/
+(function () {
+    // 需要拷贝自己七牛上的地址(不知道怎么拷贝,先手动上传一个,复制地址就好)
+    var domain = 'q2sck68ly.bkt.clouddn.com';
+    var uploader = Qiniu.uploader({
+        runtimes: 'html5,flash,html4', //上传模式，依次退化
+        browse_button: 'test-image-file', //上传选择的点选按钮id，必须
+        container: 'comment-form', //上传区域DOM的ID，默认是browse_button的父元素
+        drop_element: 'test-image-file', //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+        max_file_size: '50mb', //文件最大允许的尺寸
+        dragdrop: true, //是否开启拖拽上传
+        chunk_size: '4mb', //分块上传时，每片的大小
+        uptoken_url: '{% url 'qiniuyun:token' %}', //ajax请求token的url(书写上面第四点的地址)
+        domain: domain, //图片下载时候的域名
+        get_new_uptoken: false, //是否每次上传文件都要从业务服务器获取token
+        auto_start: true, //是否自动上传
+        log_level: 5, //log级别
+        init: {
+            'FilesAdded': function (up, files) {
+                // 文件添加进队列后，处理相关的事情
+                console.log('file added');
+            },
+            'BeforeUpload': function (up, file) {
+                // 每个文件上传前，处理相关的事情
+                console.log('before upload');
+            },
+            'UploadProgress': function () {
+                // 每个文件上传时，处理相关的事情
+                console.log('upload progress');
+            },
+            'FileUploaded': function (up, file, info) {
+                // 每个文件上传成功后，处理相关的事情
+                // 刚刚上传的文件名称domain + file.name
+                console.log('file uploaded-----------');
+                // 把上传的文件地址保存到本地的隐藏域中
+                $('#imgUrl').val(domain + file.name);
+            },
+            'Error': function (up, err, errTip) {
+                console.log('error:' + err);
+            },
+            'UploadComplete': function () {
+                //队列文件处理完毕后，处理相关的事情
+            },
+            'Key': function (up, file) {
+                // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+                // 该配置必须要在unique_names: false，save_key: false时才生效
+                var key = +new Date(); // 对上传的文件重命名
+                // do something with key here
+                return key
+            }
+        }
+    });
+})();
+/*---------关于七牛上传代码end-----------*/
       function zycheck(){
         //var source_value = $('#source_value').text();
         //var user_name = $('#username').val();

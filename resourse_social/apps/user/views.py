@@ -101,7 +101,7 @@ class UserCenter(View):
         comment_new = Comment_Msg()  # 显示最新评论
         socials = Social_Msg()  # 显示最新资源信息
         user_info = Users.objects.get(username=request.session['username'])
-        source = Posts.objects.filter(share_name=request.session['username'])
+        source = Posts.objects.filter(share_name=request.session['username']).order_by('-create_time')
         info = Information.objects.filter(receive_name=request.session['username'], read_sure=False)
         paginator = Paginator(source, 5)  # 每页显示25条数据
 

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'apps.srik',
     'apps.user',
     'apps.other',
+    'apps.qiniuyun',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
