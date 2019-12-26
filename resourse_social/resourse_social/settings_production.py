@@ -92,8 +92,8 @@ WSGI_APPLICATION = 'resourse_social.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-        'HOST': '127.0.0.1',  # 数据库主机
-        'PORT': 3306,  # 数据库端口
+        'HOST': '122.51.62.177',  # 数据库主机
+        'PORT': 3310,  # 数据库端口
         'USER': 'root',  # 数据库用户名
         'PASSWORD': 'python',  # 数据库用户密码
         'NAME': 'resourse_social',  # 数据库名字
