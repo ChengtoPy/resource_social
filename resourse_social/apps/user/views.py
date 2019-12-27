@@ -20,12 +20,13 @@ class LoginView(View):
     def post(self, request):
         username = request.POST.get('username')
         password = request.POST.get('pwd')
-
+        username_ = str(username)
         userlist = Users.objects.all()
         for var in userlist:
-            if var.username == username and var.password == password:
+            varusername=str(var.username)
+            if varusername== username_ and var.password == password:
                 request.session['islogin'] = True
-                request.session['username'] = username
+                request.session['username'] = username_
                 request.session['user_id'] = var.userid
                 return JsonResponse({'res': 0, 'jump_url': "{% url 'srik:index' %}"})
             else:
