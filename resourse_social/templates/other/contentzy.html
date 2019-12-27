@@ -40,7 +40,7 @@
 		    	<h2 class="title" style="font-size: 12px;"><strong>网盘/开源地址</strong></h2>
                 {% for buycheck in buysource %}
                     {% ifequal buycheck.user request.session.username %}
-                        <p id="bg">网盘/开源地址:<span id="bgurl">{{source_bgurl}}</span>      &nbsp;&nbsp;&nbsp;&nbsp密码：<span id="bgpsw">{{source_psw}}</span> </p>
+                        <p id="bg">网盘/开源地址:<a id="bgurl" href="{{ source_bgurl }}">{{source_bgurl}}</a>      &nbsp;&nbsp;&nbsp;&nbsp密码：<span id="bgpsw">{{source_psw}}</span> </p>
                     {% endifequal %}
                 {% endfor %}
 
