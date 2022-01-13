@@ -25,7 +25,7 @@ MarkupSafe==1.1.1
 more-itertools==8.0.2
 olefile==0.44
 path==13.1.0
-Pillow==6.2.1
+Pillow==9.0.0
 pycparser==2.19
 pycryptodome==3.6.6
 pycryptodomex==3.6.6
